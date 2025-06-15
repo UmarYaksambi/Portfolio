@@ -5,6 +5,7 @@ const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState<keyof typeof pages>('home');
   const [isLoaded, setIsLoaded] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [animateTech, setAnimateTech] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -13,6 +14,10 @@ const Portfolio = () => {
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    setAnimateTech(true);
   }, []);
 
   const skills = {
@@ -117,30 +122,49 @@ const Portfolio = () => {
         ></div>
       </div>
 
-      {/* Floating Code Snippets */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Static, Edge-Biased Code Snippets */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         {[
-          'console.log("Hello World")',
-          'import tensorflow as tf',
-          'const ai = new Brain()',
-          'SELECT * FROM future',
-          'git push origin main',
-          'npm install innovation'
-        ].map((code, i) => (
+          // Top Edge
+          { code: 'console.log("Hello World")', top: '4%', left: '10%' },
+          { code: 'import tensorflow as tf', top: '2%', left: '80%' },
+          { code: 'while(!awake) meditate();', top: '3%', left: '45%' },
+
+          // Bottom Edge
+          { code: 'echo "Code is poetry"', top: '92%', left: '65%' },
+          { code: 'sudo launch singularity', top: '95%', left: '25%' },
+          { code: 'scp reality.txt root@mars:', top: '94%', left: '85%' },
+
+          // Left Edge
+          { code: 'const ai = new Brain()', top: '30%', left: '2%' },
+          { code: '#include <neural_net>', top: '55%', left: '1%' },
+          { code: 'curl -X POST /api/create-universe', top: '75%', left: '3%' },
+
+          // Right Edge
+          { code: 'SELECT * FROM future', top: '12%', left: '92%' },
+          { code: 'npm install innovation', top: '48%', left: '95%' },
+          { code: 'function becomeLegend() {}', top: '72%', left: '93%' },
+
+          // Center + Spread Around
+          { code: 'brain.upload("vision.json")', top: '38%', left: '42%' },
+          { code: 'def dream(): pass', top: '51%', left: '53%' },
+          { code: 'let code = breathe();', top: '63%', left: '40%' },
+          { code: '<AI selfAware={true} />', top: '22%', left: '60%' },
+          { code: 'git push origin main', top: '34%', left: '75%' },
+          { code: 'for i in range(42): think()', top: '68%', left: '55%' },
+          { code: 'export GPT_LEVEL=∞', top: '81%', left: '48%' },
+          { code: 'const purpose = find();', top: '58%', left: '30%' },
+        ].map(({ code, top, left }, i) => (
           <div
             key={i}
-            className="absolute text-green-400/30 font-mono text-sm animate-pulse"
-            style={{
-              left: `${20 + (i * 15)}%`,
-              top: `${10 + (i * 12)}%`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: `${3 + i}s`
-            }}
+            className="absolute text-green-400/20 font-mono text-sm whitespace-nowrap"
+            style={{ top, left }}
           >
             {code}
           </div>
         ))}
       </div>
+
 
       {/* Holographic Mouse Follower */}
       <div
@@ -225,11 +249,15 @@ const Portfolio = () => {
                 {['Python', 'TensorFlow', 'React', 'C++', 'Flutter'].map((tech, index) => (
                   <span
                     key={index}
-                    className="px-3 py-1 bg-gray-800/50 border border-gray-600 rounded-full text-sm text-gray-300 hover:border-green-500/50 hover:text-green-400 transition-all duration-300"
-                    style={{
-                      animationDelay: `${index * 0.1}s`,
-                      animation: 'fadeInUp 0.6s ease-out forwards'
-                    }}
+                    className={`px-3 py-1 bg-gray-800/50 border border-gray-600 rounded-full text-sm text-gray-300 hover:border-green-500/50 hover:text-green-400 transition-all duration-300`}
+                    style={
+                      animateTech
+                        ? {
+                            animation: `fadeInUp 0.6s ease-out forwards`,
+                            animationDelay: `${index * 0.1}s`,
+                          }
+                        : {}
+                    }
                   >
                     {tech}
                   </span>
@@ -263,27 +291,19 @@ const Portfolio = () => {
                 <Mail className="w-5 h-5 text-gray-400 group-hover:text-green-400" />
               </a>
               <a 
-                href="#" 
+                href="https://github.com/UmarYaksambi" 
                 className="group p-3 bg-gray-800/50 hover:bg-blue-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-blue-500/50"
               >
                 <Github className="w-5 h-5 text-gray-400 group-hover:text-blue-400" />
               </a>
               <a 
-                href="#" 
+                href="www.linkedin.com/in/umaryaksambi" 
                 className="group p-3 bg-gray-800/50 hover:bg-purple-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-purple-500/50"
               >
                 <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-purple-400" />
               </a>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="flex flex-col items-center animate-bounce">
-          <span className="text-gray-400 text-sm mb-2 font-mono">scroll down</span>
-          <ChevronDown className="w-6 h-6 text-green-400" />
         </div>
       </div>
 
@@ -646,10 +666,10 @@ const Portfolio = () => {
             <div className="bg-gray-800/50 p-6 rounded-lg border border-blue-500/30">
               <h3 className="text-2xl font-bold text-blue-400 mb-6 font-mono">Connect Online</h3>
               <div className="flex space-x-4">
-                <a href="#" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-green-500/20 rounded-lg transition-all duration-300 hover:scale-110">
+                <a href="https://github.com/UmarYaksambi/" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-green-500/20 rounded-lg transition-all duration-300 hover:scale-110">
                   <Github className="w-6 h-6 text-white hover:text-green-400" />
                 </a>
-                <a href="#" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-blue-500/20 rounded-lg transition-all duration-300 hover:scale-110">
+                <a href="https://www.linkedin.com/in/umaryaksambi" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-blue-500/20 rounded-lg transition-all duration-300 hover:scale-110">
                   <Linkedin className="w-6 h-6 text-white hover:text-blue-400" />
                 </a>
                 <a href="mailto:umaryaksambi@gmail.com" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-red-500/20 rounded-lg transition-all duration-300 hover:scale-110">
@@ -659,7 +679,7 @@ const Portfolio = () => {
             </div>
           </div>
 
-          <div className="bg-gray-800/50 p-6 rounded-lg border border-yellow-500/30">
+          <div className="relative z-20 bg-gray-800/50 p-6 rounded-lg border border-yellow-500/30">
             <h3 className="text-2xl font-bold text-yellow-400 mb-6 font-mono">Quick Message</h3>
             <div className="space-y-4">
               <div>
