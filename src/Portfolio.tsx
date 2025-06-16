@@ -1,24 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, Code, Brain, Zap, Trophy, Users, BookOpen, ChevronRight, Terminal, Cpu, Database, Smartphone, Globe, Award, Calendar, ExternalLink, Laptop, LaptopMinimal, LaptopMinimalCheck, LaptopMinimalIcon } from 'lucide-react';
+import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, Code, Brain, Zap, Trophy, Users, BookOpen, ChevronRight, Terminal, Cpu, Database, Smartphone, Globe, Award, Calendar, ExternalLink, Laptop, LaptopMinimal, LaptopMinimalCheck, LaptopMinimalIcon, FileText, Instagram } from 'lucide-react';
 
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState<keyof typeof pages>('home');
   const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [animateTech, setAnimateTech] = useState(false);
+
+  // New: Only trigger animation once on initial load
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  useEffect(() => {
-    setAnimateTech(true);
-  }, []);
+    if (!hasAnimated) {
+      setHasAnimated(true);
+    }
+    // Remove mousemove event listener logic
+  }, [hasAnimated]);
 
   const skills = {
     languages: ['Python', 'C++', 'Embedded C', 'SQL', 'JavaScript', 'R', 'TypeScript'],
@@ -102,234 +98,302 @@ const Portfolio = () => {
                 {page.charAt(0).toUpperCase() + page.slice(1)}
               </button>
             ))}
+            {/* Resume Link - Lucide Icon */}
+            <a
+              href="/Resume.pdf"
+              download
+              className="nav-link resume-btn flex items-center justify-center"
+              style={{
+                padding: '0.5rem',
+                borderRadius: '4px',
+                color: '#22c55e',
+                marginLeft: '1rem',
+                transition: 'background 0.2s',
+              }}
+              title="Download Resume"
+              aria-label="Download Resume"
+            >
+              <FileText className="w-6 h-6" />
+            </a>
           </div>
         </div>
       </div>
     </nav>
   );
 
-  const HomePage = () => (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Dynamic Grid Background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-blue-500/10"></div>
-        <div 
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px',
-            animation: 'grid-move 20s linear infinite'
-          }}
-        ></div>
-      </div>
+  const TerminalTyping = () => {
+    // Each entry: { text: string, color: string }
+    const lines = [
+      { text: '$ whoami', color: 'text-green-400' },
+      { text: 'Muhammad Umar Yaksambi', color: 'text-white' },
+      { text: '$ cat skills.txt', color: 'text-green-400' },
+      { text: '🧠 Machine Learning Enthusiast', color: 'text-blue-400' },
+      { text: '🚗 Autonomous Vehicle Developer', color: 'text-purple-400' },
+      { text: '📱 Full-Stack Engineer', color: 'text-yellow-400' },
+      { text: '🔬 AI Research Intern', color: 'text-pink-400' },
+      { text: '$ ls achievements/', color: 'text-green-400' },
+      { text: 'CGPA_8.98.txt  Samsung_Intern.log  NPTEL_Gold.cert', color: 'text-gray-300' },
+      { text: '$ echo $CURRENT_STATUS', color: 'text-green-400' },
+      { text: 'Ready to innovate and collaborate! 🚀', color: 'text-green-400 animate-pulse' },
+      { text: '$ _', color: 'text-green-400 mt-4' }
+    ];
 
-      {/* Static, Edge-Biased Code Snippets */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        {[
-          // Top Edge
-          { code: 'console.log("Hello World")', top: '4%', left: '10%' },
-          { code: 'import tensorflow as tf', top: '2%', left: '80%' },
-          { code: 'while(!awake) meditate();', top: '3%', left: '45%' },
+    const [displayedLines, setDisplayedLines] = useState<string[]>([]);
+    const [currentLine, setCurrentLine] = useState(0);
+    const [typed, setTyped] = useState('');
+    const [isDone, setIsDone] = useState(false);
 
-          // Bottom Edge
-          { code: 'echo "Code is poetry"', top: '92%', left: '65%' },
-          { code: 'sudo launch singularity', top: '95%', left: '25%' },
-          { code: 'scp reality.txt root@mars:', top: '94%', left: '85%' },
+    useEffect(() => {
+      if (currentLine >= lines.length) {
+        setIsDone(true);
+        return;
+      }
+      setTyped('');
+      const line = lines[currentLine].text;
+      let i = 0;
+      const typeInterval = setInterval(() => {
+        setTyped(line.slice(0, i + 1));
+        i++;
+        if (i === line.length) {
+          clearInterval(typeInterval);
+          setTimeout(() => {
+            setDisplayedLines((prev) => [...prev, line]);
+            setCurrentLine((prev) => prev + 1);
+          }, 400);
+        }
+      }, 18);
+      return () => clearInterval(typeInterval);
+      // eslint-disable-next-line
+    }, [currentLine]);
 
-          // Left Edge
-          { code: 'const ai = new Brain()', top: '30%', left: '2%' },
-          { code: '#include <neural_net>', top: '55%', left: '1%' },
-          { code: 'curl -X POST /api/create-universe', top: '75%', left: '3%' },
-
-          // Right Edge
-          { code: 'SELECT * FROM future', top: '12%', left: '92%' },
-          { code: 'npm install innovation', top: '48%', left: '95%' },
-          { code: 'function becomeLegend() {}', top: '72%', left: '93%' },
-
-          // Center + Spread Around
-          { code: 'brain.upload("vision.json")', top: '38%', left: '42%' },
-          { code: 'def dream(): pass', top: '51%', left: '53%' },
-          { code: 'let code = breathe();', top: '63%', left: '40%' },
-          { code: '<AI selfAware={true} />', top: '22%', left: '60%' },
-          { code: 'git push origin main', top: '34%', left: '75%' },
-          { code: 'for i in range(42): think()', top: '68%', left: '55%' },
-          { code: 'export GPT_LEVEL=∞', top: '81%', left: '48%' },
-          { code: 'const purpose = find();', top: '58%', left: '30%' },
-        ].map(({ code, top, left }, i) => (
-          <div
-            key={i}
-            className="absolute text-green-400/20 font-mono text-sm whitespace-nowrap"
-            style={{ top, left }}
-          >
-            {code}
-          </div>
+    return (
+      <div className="space-y-2 text-sm min-h-[220px] font-mono">
+        {displayedLines.map((line, idx) => (
+          <div key={idx} className={lines[idx].color}>{line}</div>
         ))}
-      </div>
-
-
-      {/* Holographic Mouse Follower */}
-      <div
-        className="fixed w-32 h-32 pointer-events-none z-10 transition-all duration-300 ease-out"
-        style={{
-          left: mousePosition.x - 64,
-          top: mousePosition.y - 64,
-          background: 'radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%)',
-          borderRadius: '50%'
-        }}
-      />
-
-      <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          
-          {/* Left Side - Interactive Terminal */}
-          <div className={`transform transition-all duration-1000 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-            <div className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-green-500/30 p-6 font-mono">
-              {/* Terminal Header */}
-              <div className="flex items-center space-x-2 mb-4 pb-3 border-b border-gray-700">
-                <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                <span className="text-gray-400 text-sm ml-4">umar@portfolio:~$</span>
-              </div>
-              
-              {/* Terminal Content */}
-              <div className="space-y-2 text-sm">
-                <div className="text-green-400">$ whoami</div>
-                <div className="text-white">Muhammad Umar Yaksambi</div>
-                <div className="text-green-400">$ cat skills.txt</div>
-                <div className="text-blue-400">🧠 Machine Learning Enthusiast</div>
-                <div className="text-purple-400">🚗 Autonomous Vehicle Developer</div>
-                <div className="text-yellow-400">📱 Full-Stack Engineer</div>
-                <div className="text-pink-400">🔬 AI Research Intern</div>
-                <div className="text-green-400">$ ls achievements/</div>
-                <div className="text-gray-300">CGPA_8.98.txt  Samsung_Intern.log  NPTEL_Gold.cert</div>
-                <div className="text-green-400">$ echo $CURRENT_STATUS</div>
-                <div className="text-green-400 animate-pulse">Ready to innovate and collaborate! 🚀</div>
-                <div className="text-green-400 mt-4">$ _</div>
-              </div>
-            </div>
-
-            {/* Quick Stats Cards */}
-            <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="bg-green-500/10 backdrop-blur-sm border border-green-500/30 rounded-lg p-4 hover:bg-green-500/20 transition-all duration-300">
-                <div className="text-2xl font-bold text-green-400">8.98</div>
-                <div className="text-gray-300 text-sm">CGPA</div>
-              </div>
-              <div className="bg-blue-500/10 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 hover:bg-blue-500/20 transition-all duration-300">
-                <div className="text-2xl font-bold text-blue-400">15+</div>
-                <div className="text-gray-300 text-sm">Projects</div>
-              </div>
-            </div>
+        {!isDone && (
+          <div className={lines[currentLine]?.color}>
+            {typed}
+            <span className="animate-pulse">|</span>
           </div>
+        )}
+      </div>
+    );
+  };
 
-          {/* Right Side - Hero Content */}
-          <div className={`text-center lg:text-left transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-            <div className="mb-8">
-              <div className="inline-block mb-4">
-                <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent text-lg font-mono">
-                  Hello, I'm
-                </span>
-              </div>
-                <h1 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-none">
-                  <div className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent mb-2 text-left">
-                    UMAR
-                  </div>
-                  <div className="text-gray-300 text-3xl lg:text-4xl -mt-1 text-left mb-10">
-                    YAKSAMBI
-                  </div>
-                </h1>
-              <div className="text-xl text-gray-300 mb-6">
-                Crafting the future with
-                <br />
-                <span className="text-green-400 font-semibold">Machine Learning</span> & 
-                <span className="text-blue-400 font-semibold"> AI Innovation</span>
+  const HomePage = () => {
+    // Add this state and effect for animation loop
+    const [animateTechStack, setAnimateTechStack] = useState(true);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setAnimateTechStack(false);
+        setTimeout(() => setAnimateTechStack(true), 50); // brief reset to retrigger animation
+      }, 5555);
+      return () => clearInterval(interval);
+    }, []);
+
+    return (
+      <div className="min-h-screen bg-black relative overflow-hidden">
+        {/* Dynamic Grid Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-transparent to-blue-500/10"></div>
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px',
+              animation: 'grid-move 20s linear infinite'
+            }}
+          ></div>
+        </div>
+
+        {/* Static, Edge-Biased Code Snippets */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          {[
+            // Top Edge
+            { code: 'console.log("Hello World")', top: '4%', left: '10%' },
+            { code: 'import tensorflow as tf', top: '2%', left: '80%' },
+            { code: 'while(!awake) meditate();', top: '3%', left: '45%' },
+
+            // Bottom Edge
+            { code: 'echo "Code is poetry"', top: '92%', left: '65%' },
+            { code: 'sudo launch singularity', top: '95%', left: '25%' },
+            { code: 'scp reality.txt root@mars:', top: '94%', left: '85%' },
+
+            // Left Edge
+            { code: 'const ai = new Brain()', top: '30%', left: '2%' },
+            { code: '#include <neural_net>', top: '55%', left: '1%' },
+            { code: 'curl -X POST /api/create-universe', top: '75%', left: '3%' },
+
+            // Right Edge
+            { code: 'SELECT * FROM future', top: '12%', left: '92%' },
+            { code: 'npm install innovation', top: '48%', left: '95%' },
+            { code: 'function becomeLegend() {}', top: '72%', left: '93%' },
+
+            // Center + Spread Around
+            { code: 'brain.upload("vision.json")', top: '38%', left: '42%' },
+            { code: 'def dream(): pass', top: '51%', left: '53%' },
+            { code: 'let code = breathe();', top: '63%', left: '40%' },
+            { code: '<AI selfAware={true} />', top: '22%', left: '60%' },
+            { code: 'git push origin main', top: '34%', left: '75%' },
+            { code: 'for i in range(42): think()', top: '68%', left: '55%' },
+            { code: 'export GPT_LEVEL=∞', top: '81%', left: '48%' },
+            { code: 'const purpose = find();', top: '58%', left: '30%' },
+          ].map(({ code, top, left }, i) => (
+            <div
+              key={i}
+              className="absolute text-green-400/20 font-mono text-sm whitespace-nowrap"
+              style={{ top, left }}
+            >
+              {code}
+            </div>
+          ))}
+        </div>
+
+        <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Side - Interactive Terminal */}
+            <div className={`transform transition-all duration-1000 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+              <div className="bg-gray-900/90 backdrop-blur-sm rounded-lg border border-green-500/30 p-6 font-mono">
+                {/* Terminal Header */}
+                <div className="flex items-center space-x-2 mb-4 pb-3 border-b border-gray-700">
+                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <span className="text-gray-400 text-sm ml-4">umar@portfolio:~$</span>
+                </div>
+                {/* Terminal Content with typing effect */}
+                <TerminalTyping />
               </div>
 
-              {/* Animated Tech Stack */}
-              <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-8">
-                {['Python', 'TensorFlow', 'React', 'C++', 'Flutter'].map((tech, index) => (
-                  <span
-                    key={index}
-                    className={`px-3 py-1 bg-gray-800/50 border border-gray-600 rounded-full text-sm text-gray-300 hover:border-green-500/50 hover:text-green-400 transition-all duration-300`}
-                    style={
-                      animateTech
-                        ? {
-                            animation: `fadeInUp 0.6s ease-out forwards`,
-                            animationDelay: `${index * 0.1}s`,
-                          }
-                        : {}
-                    }
-                  >
-                    {tech}
+              {/* Quick Stats Cards */}
+              <div className="grid grid-cols-2 gap-4 mt-6">
+                <div className="bg-green-500/10 backdrop-blur-sm border border-green-500/30 rounded-lg p-4 hover:bg-green-500/20 transition-all duration-300">
+                  <div className="text-2xl font-bold text-green-400">8.98</div>
+                  <div className="text-gray-300 text-sm">CGPA</div>
+                </div>
+                <div className="bg-blue-500/10 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 hover:bg-blue-500/20 transition-all duration-300">
+                  <div className="text-2xl font-bold text-blue-400">15+</div>
+                  <div className="text-gray-300 text-sm">Projects</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side - Hero Content */}
+            <div className={`text-center lg:text-left transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
+              <div className="mb-8">
+                <div className="inline-block mb-4">
+                  <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent text-lg font-mono">
+                    Hello, I'm
                   </span>
-                ))}
+                </div>
+                  <h1 className="text-5xl lg:text-7xl font-bold text-white mb-4 leading-none">
+                    <div className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent mb-2 text-left">
+                      UMAR
+                    </div>
+                    <div className="text-gray-300 text-3xl lg:text-4xl -mt-1 text-left mb-10">
+                      &nbsp;YAKSAMBI
+                    </div>
+                  </h1>
+                <div className="text-xl text-gray-300 mb-6">
+                  Crafting the future with
+                  <br />
+                  <span className="text-green-400 font-semibold">Machine Learning</span> & 
+                  <span className="text-blue-400 font-semibold"> AI Innovation</span>
+                </div>
+
+                {/* Animated Tech Stack */}
+                <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-8">
+                  {['Python', 'TensorFlow', 'React', 'C++', 'Flutter'].map((tech, index) => (
+                    <span
+                      key={tech + (animateTechStack ? 'a' : 'b')} // force remount to retrigger animation
+                      className={`px-3 py-1 bg-gray-800/50 border border-gray-600 rounded-full text-sm text-gray-300 hover:border-green-500/50 hover:text-green-400 transition-all duration-300
+                        ${animateTechStack ? 'fadeInUp-anim' : ''}`}
+                      style={
+                        animateTechStack
+                          ? {
+                              animation: `fadeInUp 1s ease-out forwards`,
+                              animationDelay: `${index * 0.3}s`,
+                            }
+                          : {}
+                      }
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-              <button
-                onClick={() => setCurrentPage('projects')}
-                className="group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-3 rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
-              >
-                View My Work
-                <ChevronRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => setCurrentPage('contact')}
-                className="bg-transparent border-2 border-green-500 text-green-400 px-8 py-3 rounded-full font-semibold hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105"
-              >
-                Let's Connect
-              </button>
-            </div>
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
+                <button
+                  onClick={() => setCurrentPage('projects')}
+                  className="group bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-3 rounded-full font-semibold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25"
+                >
+                  View My Work
+                  <ChevronRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+                <button
+                  onClick={() => setCurrentPage('contact')}
+                  className="bg-transparent border-2 border-green-500 text-green-400 px-8 py-3 rounded-full font-semibold hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-105"
+                >
+                  Let's Connect
+                </button>
+              </div>
 
-            {/* Social Links */}
-            <div className="flex justify-center lg:justify-start space-x-4">
-              <a 
-                href="mailto:umaryaksambi@gmail.com" 
-                className="group p-3 bg-gray-800/50 hover:bg-green-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-green-500/50"
-              >
-                <Mail className="w-5 h-5 text-gray-400 group-hover:text-green-400" />
-              </a>
-              <a 
-                href="https://github.com/UmarYaksambi" 
-                className="group p-3 bg-gray-800/50 hover:bg-blue-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-blue-500/50"
-              >
-                <Github className="w-5 h-5 text-gray-400 group-hover:text-blue-400" />
-              </a>
-              <a 
-                href="www.linkedin.com/in/umaryaksambi" 
-                className="group p-3 bg-gray-800/50 hover:bg-purple-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-purple-500/50"
-              >
-                <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-purple-400" />
-              </a>
+              {/* Social Links */}
+              <div className="flex justify-center lg:justify-start space-x-4">
+                <a 
+                  href="mailto:umaryaksambi@gmail.com" 
+                  className="group p-3 bg-gray-800/50 hover:bg-green-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-green-500/50"
+                >
+                  <Mail className="w-5 h-5 text-gray-400 group-hover:text-green-400" />
+                </a>
+                <a 
+                  href="https://github.com/UmarYaksambi" 
+                  className="group p-3 bg-gray-800/50 hover:bg-blue-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-blue-500/50"
+                >
+                  <Github className="w-5 h-5 text-gray-400 group-hover:text-blue-400" />
+                </a>
+                <a 
+                  href="www.linkedin.com/in/umaryaksambi" 
+                  className="group p-3 bg-gray-800/50 hover:bg-purple-500/20 rounded-full transition-all duration-300 hover:scale-110 border border-gray-700 hover:border-purple-500/50"
+                >
+                  <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-purple-400" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Add CSS animation for grid movement */}
-      <style>{`
-        @keyframes grid-move {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(50px, 50px); }
-        }
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
+        {/* Add CSS animation for grid movement */}
+        <style>{`
+          @keyframes grid-move {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
           }
-        }
-      `}</style>
-    </div>
-  );
+          .fadeInUp-anim {
+            animation: fadeInUp 0.6s ease-out forwards;
+          }
+        `}</style>
+      </div>
+    );
+  };
 
   const AboutPage = () => (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black pt-20 px-4">
@@ -664,7 +728,7 @@ const Portfolio = () => {
       }
     }, []);
 
-    // Dummy send handler (replace with real API if needed)
+    // Formspree integration
     const handleSend = async (e: React.FormEvent) => {
       e.preventDefault();
       setError(null);
@@ -682,12 +746,28 @@ const Portfolio = () => {
 
       setStatus('sending');
       try {
-        // Simulate sending (replace with real API call)
-        await new Promise((res) => setTimeout(res, 1200));
-        setStatus('sent');
-        setName('');
-        setEmail('');
-        setMessage('');
+        const response = await fetch('https://formspree.io/f/xjkrrdro', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            message
+          })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setStatus('sent');
+          setName('');
+          setEmail('');
+          setMessage('');
+        } else {
+          setStatus('error');
+          setError(data?.errors?.[0]?.message || 'Failed to send message. Please try again.');
+        }
       } catch {
         setStatus('error');
         setError('Failed to send message. Please try again.');
@@ -717,7 +797,7 @@ const Portfolio = () => {
                       <Mail className="w-6 h-6 text-green-400" />
                     </div>
                     <div>
-                      <p className="text-white font-semibold">Email</p>
+                      <p className="text-white font-semibold text-left">Email</p>
                       <p className="text-gray-300 font-mono">umaryaksambi@gmail.com</p>
                     </div>
                   </div>
@@ -726,7 +806,7 @@ const Portfolio = () => {
                       <Phone className="w-6 h-6 text-blue-400" />
                     </div>
                     <div>
-                      <p className="text-white font-semibold">Phone</p>
+                      <p className="text-white font-semibold text-left">Phone</p>
                       <p className="text-gray-300 font-mono">+91 9902578332</p>
                     </div>
                   </div>
@@ -735,7 +815,7 @@ const Portfolio = () => {
                       <MapPin className="w-6 h-6 text-purple-400" />
                     </div>
                     <div>
-                      <p className="text-white font-semibold">Location</p>
+                      <p className="text-white font-semibold text-left">Location</p>
                       <p className="text-gray-300 font-mono">Bengaluru, Karnataka, India</p>
                     </div>
                   </div>
@@ -744,7 +824,7 @@ const Portfolio = () => {
 
               <div className="bg-gray-800/50 p-6 rounded-lg border border-blue-500/30">
                 <h3 className="text-2xl font-bold text-blue-400 mb-6 font-mono">Connect Online</h3>
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 justify-center">
                   <a href="https://github.com/UmarYaksambi/" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-green-500/20 rounded-lg transition-all duration-300 hover:scale-110">
                     <Github className="w-6 h-6 text-white hover:text-green-400" />
                   </a>
@@ -753,6 +833,9 @@ const Portfolio = () => {
                   </a>
                   <a href="mailto:umaryaksambi@gmail.com" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-red-500/20 rounded-lg transition-all duration-300 hover:scale-110">
                     <Mail className="w-6 h-6 text-white hover:text-red-400" />
+                  </a>
+                  <a href="https://www.instagram.com/umaryaksambiii" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-red-500/20 rounded-lg transition-all duration-300 hover:scale-110">
+                    <Instagram className="w-6 h-6 text-white hover:text-red-400" />
                   </a>
                 </div>
               </div>
