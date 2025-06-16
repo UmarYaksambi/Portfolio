@@ -4,21 +4,17 @@ import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, Code, Brain, Zap, T
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState<keyof typeof pages>('home');
   const [isLoaded, setIsLoaded] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [animateTech, setAnimateTech] = useState(false);
+
+  // New: Only trigger animation once on initial load
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
-  useEffect(() => {
-    setAnimateTech(true);
-  }, []);
+    if (!hasAnimated) {
+      setHasAnimated(true);
+    }
+    // Remove mousemove event listener logic
+  }, [hasAnimated]);
 
   const skills = {
     languages: ['Python', 'C++', 'Embedded C', 'SQL', 'JavaScript', 'R', 'TypeScript'],
@@ -229,18 +225,6 @@ const Portfolio = () => {
         ))}
       </div>
 
-
-      {/* Holographic Mouse Follower */}
-      <div
-        className="fixed w-32 h-32 pointer-events-none z-10 transition-all duration-300 ease-out"
-        style={{
-          left: mousePosition.x - 64,
-          top: mousePosition.y - 64,
-          background: 'radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%)',
-          borderRadius: '50%'
-        }}
-      />
-
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           
@@ -301,7 +285,7 @@ const Portfolio = () => {
                     key={index}
                     className={`px-3 py-1 bg-gray-800/50 border border-gray-600 rounded-full text-sm text-gray-300 hover:border-green-500/50 hover:text-green-400 transition-all duration-300`}
                     style={
-                      animateTech
+                      hasAnimated
                         ? {
                             animation: `fadeInUp 0.6s ease-out forwards`,
                             animationDelay: `${index * 0.1}s`,
