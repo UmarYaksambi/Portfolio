@@ -100,7 +100,7 @@ const Portfolio = () => {
             ))}
             {/* Resume Link - Lucide Icon */}
             <a
-              href="/Resume.pdf"
+              href="/portfolio/Resume.pdf"
               download
               className="nav-link resume-btn flex items-center justify-center"
               style={{
@@ -834,7 +834,7 @@ const Portfolio = () => {
                   <a href="mailto:umaryaksambi@gmail.com" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-red-500/20 rounded-lg transition-all duration-300 hover:scale-110">
                     <Mail className="w-6 h-6 text-white hover:text-red-400" />
                   </a>
-                  <a href="https://www.instagram.com/umaryaksambiii" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-red-500/20 rounded-lg transition-all duration-300 hover:scale-110">
+                  <a href="https://www.instagram.com/umaryaksambiii" className="flex items-center justify-center w-12 h-12 bg-gray-700 hover:bg-pink-500/20 rounded-lg transition-all duration-300 hover:scale-110">
                     <Instagram className="w-6 h-6 text-white hover:text-red-400" />
                   </a>
                 </div>
