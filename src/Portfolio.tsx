@@ -100,7 +100,7 @@ const Portfolio = () => {
             ))}
             {/* Resume Link - Lucide Icon */}
             <a
-              href="/portfolio/Resume.pdf"
+              href="/Portfolio/Resume.pdf"
               download
               className="nav-link resume-btn flex items-center justify-center"
               style={{
