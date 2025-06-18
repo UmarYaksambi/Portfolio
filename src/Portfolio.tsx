@@ -99,22 +99,23 @@ const Portfolio = () => {
               </button>
             ))}
             {/* Resume Link - Lucide Icon */}
-            <a
-              href="/Portfolio/Resume.pdf"
-              download
-              className="nav-link resume-btn flex items-center justify-center"
-              style={{
-                padding: '0.5rem',
-                borderRadius: '4px',
-                color: '#22c55e',
-                marginLeft: '1rem',
-                transition: 'background 0.2s',
-              }}
-              title="Download Resume"
-              aria-label="Download Resume"
-            >
-              <FileText className="w-6 h-6" />
-            </a>
+              <a
+                href="/Portfolio/Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link resume-btn flex items-center justify-center"
+                style={{
+                  padding: '0.5rem',
+                  borderRadius: '4px',
+                  color: '#22c55e',
+                  marginLeft: '1rem',
+                  transition: 'background 0.2s',
+                }}
+                title="View Resume"
+                aria-label="View Resume"
+              >
+                <FileText className="w-6 h-6" />
+              </a>
           </div>
         </div>
       </div>
