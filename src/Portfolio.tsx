@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Github, Linkedin, Mail, Phone, MapPin, Code, Brain, Zap, Trophy, Users, BookOpen, ChevronRight, Terminal, Cpu, Database, Smartphone, Globe, Award, Calendar, ExternalLink, Laptop, LaptopMinimal, LaptopMinimalCheck, LaptopMinimalIcon, FileText, Instagram } from 'lucide-react';
+import { Github, Linkedin, Mail, Phone, MapPin, Code, Brain, Zap, Trophy, Users, BookOpen, ChevronRight, Terminal, Cpu, Database, Globe, Award, Calendar, ExternalLink, LaptopMinimalIcon, FileText, Instagram, School } from 'lucide-react';
 
 const Portfolio = () => {
   const [currentPage, setCurrentPage] = useState<keyof typeof pages>('home');
@@ -123,7 +123,6 @@ const Portfolio = () => {
   );
 
   const TerminalTyping = () => {
-    // Each entry: { text: string, color: string }
     const lines = [
       { text: '$ whoami', color: 'text-green-400' },
       { text: 'Muhammad Umar Yaksambi', color: 'text-white' },
@@ -133,9 +132,9 @@ const Portfolio = () => {
       { text: '📱 Full-Stack Engineer', color: 'text-yellow-400' },
       { text: '🔬 AI Research Intern', color: 'text-pink-400' },
       { text: '$ ls achievements/', color: 'text-green-400' },
-      { text: 'CGPA_8.98.txt  Samsung_Intern.log  NPTEL_Gold.cert', color: 'text-gray-300' },
+      { text: '📄 CGPA_8.98.txt  🛠️ Samsung_Intern.log  🥇 NPTEL_Gold.cert', color: 'text-gray-300' },
       { text: '$ echo $CURRENT_STATUS', color: 'text-green-400' },
-      { text: 'Ready to innovate and collaborate! 🚀', color: 'text-green-400 animate-pulse' },
+      { text: '🌟 Ready to innovate and collaborate! 🚀', color: 'text-green-400 animate-pulse' },
       { text: '$ _', color: 'text-green-400 mt-4' }
     ];
 
@@ -164,7 +163,6 @@ const Portfolio = () => {
         }
       }, 18);
       return () => clearInterval(typeInterval);
-      // eslint-disable-next-line
     }, [currentLine]);
 
     return (
@@ -447,6 +445,14 @@ const Portfolio = () => {
                     <p className="text-yellow-400 font-mono"> PCMC: 98.75% | 2021 – 2023</p>
                   </div>
                 </div>
+                <div className="flex items-start space-x-4">
+                  <School className="w-5 h-5 text-blue-400 mt-1" />
+                  <div className="text-left w-full">
+                    <h4 className="text-white font-semibold">School</h4>
+                    <p className="text-gray-300">St Paul's High School</p>
+                    <p className="text-blue-400 font-mono"> Grade: 88.45% | 2010 – 2021</p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -538,7 +544,6 @@ const Portfolio = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            // Make the entire card a link (replace '#' with your actual project URL if available)
             <a
               key={index}
               href={project.href}
@@ -552,7 +557,7 @@ const Portfolio = () => {
                   {project.icon}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-green-400 transition-colors text-left">
                     {project.title}
                   </h3>
                   <div className="flex flex-wrap gap-2 mb-3">
@@ -934,6 +939,27 @@ const Portfolio = () => {
 
   const CurrentPage = pages[currentPage];
 
+  // New: Mobile warning state
+  const [showMobileWarning, setShowMobileWarning] = useState(false);
+
+  // New: Effect to show mobile warning on small screens
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setShowMobileWarning(true);
+      } else {
+        setShowMobileWarning(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Check on mount
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="bg-black min-h-screen font-sans">
       <NavBar />
@@ -951,6 +977,75 @@ const Portfolio = () => {
           </p>
         </div>
       </footer>
+
+      {/* Mobile Warning Overlay */}
+      {showMobileWarning && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm">
+          <div className="bg-gray-900 border-2 border-green-400 rounded-2xl shadow-2xl p-8 max-w-xs mx-auto text-center relative animate-bounce-in">
+            <div className="flex justify-center mb-4">
+              <span className="text-green-400 text-4xl animate-spin-slow">☕</span>
+              <span className="text-blue-400 text-4xl ml-2 animate-bounce">😴</span>
+              <span className="text-yellow-400 text-4xl ml-2 animate-pulse">📱</span>
+            </div>
+            <h2 className="text-green-400 font-mono text-xl mb-2">Access Denied: Mobile Detected!</h2>
+            <p className="text-gray-200 font-mono text-sm mb-4">
+              <span className="text-pink-400">alert("Bruh!");</span><br />
+              I brewed <span className="text-green-400">42 cups of coffee</span> and sacrificed my sleep to make this look epic on desktop.<br />
+              <span className="text-yellow-400">Mobile view?</span> My code is literally crying in the corner.<br /><br />
+              <span className="text-blue-400">Switch to desktop mode</span> or risk being haunted by unstyled divs and broken layouts.<br />
+              <span className="text-purple-400">Will fix mobile after my gazzalion assignments. Pinky promise!</span>
+            </p>
+              <button
+                onClick={() => setShowMobileWarning(false)}
+                className="px-8 py-4 bg-black border-2 border-green-400 text-green-400 rounded-lg font-mono font-bold text-lg hover:bg-green-400 hover:text-black hover:scale-110 hover:rotate-1 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-green-400/50 relative overflow-hidden group"
+              >
+                <span className="relative z-10">sudo rm -rf mobile_mode 💀</span>
+                <div className="absolute inset-0 bg-green-400 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+              </button>
+              <style>{`
+                @keyframes matrix-shine {
+                  0%, 100% { background-position: -200% 0; }
+                  50% { background-position: 200% 0; }
+                }
+                
+                .animate-pulse-glow {
+                  animation: pulse-glow 10s ease-in-out infinite alternate;
+                }
+                
+                @keyframes pulse-glow {
+                  from { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+                  to { box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 40px rgba(245, 158, 11, 0.3); }
+                }
+                
+                .animate-bounce-subtle {
+                  animation: bounce-subtle 10s ease-in-out infinite;
+                }
+                
+                @keyframes bounce-subtle {
+                  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                  40% { transform: translateY(-5px); }
+                  60% { transform: translateY(-3px); }
+                }
+              `}</style>
+            <style>{`
+              @keyframes bounce-in {
+                0% { transform: scale(0.7); opacity: 0; }
+                60% { transform: scale(1.05); opacity: 1; }
+                100% { transform: scale(1); }
+              }
+              .animate-bounce-in {
+                animation: bounce-in 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+              }
+              .animate-spin-slow {
+                animation: spin 3s linear infinite;
+              }
+              @keyframes spin {
+                100% { transform: rotate(360deg); }
+              }
+            `}</style>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
