@@ -132,7 +132,7 @@ const Portfolio = () => {
       { text: '📱 Full-Stack Engineer', color: 'text-yellow-400' },
       { text: '🔬 AI Research Intern', color: 'text-pink-400' },
       { text: '$ ls achievements/', color: 'text-green-400' },
-      { text: '📄 CGPA_8.98.txt  🛠️ Samsung_Intern.log  🥇 NPTEL_Gold.cert', color: 'text-gray-300' },
+      { text: '📄 CGPA_9.12.txt  🛠️ Samsung_Intern.log  🥇 NPTEL_Gold.cert', color: 'text-gray-300' },
       { text: '$ echo $CURRENT_STATUS', color: 'text-green-400' },
       { text: '🌟 Ready to innovate and collaborate! 🚀', color: 'text-green-400 animate-pulse' },
       { text: '$ _', color: 'text-green-400 mt-4' }
@@ -273,7 +273,7 @@ const Portfolio = () => {
               {/* Quick Stats Cards */}
               <div className="grid grid-cols-2 gap-4 mt-6">
                 <div className="bg-green-500/10 backdrop-blur-sm border border-green-500/30 rounded-lg p-4 hover:bg-green-500/20 transition-all duration-300">
-                  <div className="text-2xl font-bold text-green-400">8.98</div>
+                  <div className="text-2xl font-bold text-green-400">9.12</div>
                   <div className="text-gray-300 text-sm">CGPA</div>
                 </div>
                 <div className="bg-blue-500/10 backdrop-blur-sm border border-blue-500/30 rounded-lg p-4 hover:bg-blue-500/20 transition-all duration-300">
@@ -410,7 +410,7 @@ const Portfolio = () => {
               <h3 className="text-2xl font-bold text-green-400 mb-4 font-mono">console.log("Hello, World!");</h3>
               <p className="text-gray-300 leading-relaxed text-pretty">
                 I'm a Computer Science student at RV College of Engineering with a passion for ML and AI. 
-                Currently maintaining a stellar 8.98 CGPA while diving deep into autonomous systems, 
+                Currently maintaining a stellar 9.12 CGPA while diving deep into autonomous systems, 
                 federated learning, and cutting-edge computer graphics.
               </p>
             </div>
@@ -434,7 +434,7 @@ const Portfolio = () => {
                   <div className="text-left w-full">
                     <h4 className="text-white font-semibold">BE Computer Science & Engineering (Data Sciences)</h4>
                     <p className="text-gray-300">RV College Of Engineering, Bengaluru</p>
-                    <p className="text-green-400 font-mono">CGPA: 8.98 | Expected Sep 2027</p>
+                    <p className="text-green-400 font-mono">CGPA: 9.12 | Expected Sep 2027</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
