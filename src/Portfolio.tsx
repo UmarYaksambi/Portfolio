@@ -55,6 +55,14 @@ const Portfolio = () => {
 
   const experience = [
     {
+      role: 'PRODUCT DEVELOPER INTERN',
+      company: 'SpikedAI',
+      period: 'June 2024 – present',
+      location: 'Palo Alto, California\n(Remote)',
+      description: "Built an AI-powered Sales Copilot designed to assist sales teams in real-time during client interactions, combining live Q&A and contextual insight generation.",
+      icon: <Brain className="w-6 h-6" />
+    },
+    {
       role: 'PRISM INTERN',
       company: 'Samsung R&D Institute',
       period: 'May 2025 – present',
@@ -464,7 +472,7 @@ const Portfolio = () => {
                   <div className="text-gray-300 text-sm">Projects</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-400">2</div>
+                  <div className="text-3xl font-bold text-blue-400">3</div>
                   <div className="text-gray-300 text-sm">Internships</div>
                 </div>
                 <div className="text-center">
@@ -627,16 +635,20 @@ const Portfolio = () => {
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                       <div>
                         <h4 className="text-xl font-bold text-green-400 font-mono text-left">{exp.role}</h4>
-                        <h5 className="text-lg text-white font-semibold">{exp.company}</h5>
+                        <h5 className="text-lg text-white font-semibold text-left">{exp.company}</h5>
                       </div>
                       <div className="text-right">
                         <div className="flex items-center text-blue-400 font-mono text-sm mb-1">
                           <Calendar className="w-4 h-4 mr-2" />
                           {exp.period}
                         </div>
-                        <div className="flex items-center text-gray-400 font-mono text-sm">
-                          <MapPin className="w-4 h-4 mr-2" />
-                          {exp.location}
+                        <div className="flex items-start text-gray-400 font-mono text-sm">
+                          <MapPin className="w-4 h-4 mr-2 mt-1" />
+                          <div className="flex flex-col text-center">
+                            {exp.location.split('\n').map((line, index) => (
+                              <span key={index}>{line}</span>
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -977,75 +989,6 @@ const Portfolio = () => {
           </p>
         </div>
       </footer>
-
-      {/* Mobile Warning Overlay */}
-      {showMobileWarning && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="bg-gray-900 border-2 border-green-400 rounded-2xl shadow-2xl p-8 max-w-xs mx-auto text-center relative animate-bounce-in">
-            <div className="flex justify-center mb-4">
-              <span className="text-green-400 text-4xl animate-spin-slow">☕</span>
-              <span className="text-blue-400 text-4xl ml-2 animate-bounce">😴</span>
-              <span className="text-yellow-400 text-4xl ml-2 animate-pulse">📱</span>
-            </div>
-            <h2 className="text-green-400 font-mono text-xl mb-2">Access Denied: Mobile Detected!</h2>
-            <p className="text-gray-200 font-mono text-sm mb-4">
-              <span className="text-pink-400">alert("Bruh!");</span><br />
-              I brewed <span className="text-green-400">42 cups of coffee</span> and sacrificed my sleep to make this look epic on desktop.<br />
-              <span className="text-yellow-400">Mobile view?</span> My code is literally crying in the corner.<br /><br />
-              <span className="text-blue-400">Switch to desktop mode</span> or risk being haunted by unstyled divs and broken layouts.<br />
-              <span className="text-purple-400">Will fix mobile after my gazzalion assignments. Pinky promise!</span>
-            </p>
-              <button
-                onClick={() => setShowMobileWarning(false)}
-                className="px-8 py-4 bg-black border-2 border-green-400 text-green-400 rounded-lg font-mono font-bold text-lg hover:bg-green-400 hover:text-black hover:scale-110 hover:rotate-1 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-green-400/50 relative overflow-hidden group"
-              >
-                <span className="relative z-10">sudo rm -rf mobile_mode 💀</span>
-                <div className="absolute inset-0 bg-green-400 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-              </button>
-              <style>{`
-                @keyframes matrix-shine {
-                  0%, 100% { background-position: -200% 0; }
-                  50% { background-position: 200% 0; }
-                }
-                
-                .animate-pulse-glow {
-                  animation: pulse-glow 10s ease-in-out infinite alternate;
-                }
-                
-                @keyframes pulse-glow {
-                  from { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
-                  to { box-shadow: 0 0 30px rgba(245, 158, 11, 0.8), 0 0 40px rgba(245, 158, 11, 0.3); }
-                }
-                
-                .animate-bounce-subtle {
-                  animation: bounce-subtle 10s ease-in-out infinite;
-                }
-                
-                @keyframes bounce-subtle {
-                  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-                  40% { transform: translateY(-5px); }
-                  60% { transform: translateY(-3px); }
-                }
-              `}</style>
-            <style>{`
-              @keyframes bounce-in {
-                0% { transform: scale(0.7); opacity: 0; }
-                60% { transform: scale(1.05); opacity: 1; }
-                100% { transform: scale(1); }
-              }
-              .animate-bounce-in {
-                animation: bounce-in 0.7s cubic-bezier(.68,-0.55,.27,1.55);
-              }
-              .animate-spin-slow {
-                animation: spin 3s linear infinite;
-              }
-              @keyframes spin {
-                100% { transform: rotate(360deg); }
-              }
-            `}</style>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
