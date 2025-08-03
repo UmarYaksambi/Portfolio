@@ -340,7 +340,7 @@ const ResponsiveMobilePortfolio = () => {
             }}
           ></div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-mono">
               <span className="text-green-400">About</span> Me
@@ -441,7 +441,7 @@ const ResponsiveMobilePortfolio = () => {
             }}
           ></div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-mono">
               <span className="text-green-400">Technical</span> Arsenal
@@ -509,7 +509,7 @@ const ResponsiveMobilePortfolio = () => {
             }}
           ></div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-mono">
               <span className="text-green-400">Projects</span> Portfolio
@@ -573,7 +573,7 @@ const ResponsiveMobilePortfolio = () => {
             }}
           ></div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-mono">
               <span className="text-green-400">Professional</span> Journey
@@ -690,7 +690,7 @@ const ResponsiveMobilePortfolio = () => {
             }}
           ></div>
         </div>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 font-mono">
               <span className="text-green-400">Get</span> In Touch
@@ -839,9 +839,6 @@ const ResponsiveMobilePortfolio = () => {
     You scrolled this far? <br /> We should hang out.
   </span>
 </div>
-
-
-
 
           <p className="text-gray-400 font-mono text-xs md:text-sm">
             © 2025 Umar Yaksambi. Built with React, TypeScript & lots of ☕
