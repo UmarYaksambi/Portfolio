@@ -5,13 +5,34 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, Instagram, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const socialLinks = [
-  { href: "https://github.com", icon: Github, label: "GitHub", handle: "@developer" },
-  { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn", handle: "/in/developer" },
-  { href: "mailto:hello@developer.dev", icon: Mail, label: "Email", handle: "hello@developer.dev" },
+  {
+    href: "mailto:umaryaksambi@gmail.com",
+    icon: Mail,
+    label: "Email",
+    handle: "umaryaksambi@gmail.com",
+  },
+  {
+    href: "https://github.com/UmarYaksambi",
+    icon: Github,
+    label: "GitHub",
+    handle: "@UmarYaksambi",
+  },
+  {
+    href: "https://www.linkedin.com/in/umaryaksambi",
+    icon: Linkedin,
+    label: "LinkedIn",
+    handle: "/in/umaryaksambi",
+  },
+  {
+    href: "https://instagram.com/umaryaksambi",
+    icon: Instagram,
+    label: "Instagram",
+    handle: "@umaryaksambi",
+  },
 ];
 
 export default function Contact() {
@@ -21,15 +42,11 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    
+    await new Promise((r) => setTimeout(r, 800));
     toast({
       title: "Message sent",
-      description: "Thanks for reaching out. I'll get back to you soon.",
+      description: "Thanks for reaching out — I'll get back to you soon.",
     });
-    
     setIsSubmitting(false);
     (e.target as HTMLFormElement).reset();
   };
@@ -38,22 +55,18 @@ export default function Contact() {
     <Layout>
       <section className="py-20">
         <div className="container">
-          {/* Page Header */}
           <div className="max-w-2xl mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Contact
-            </h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Contact</h1>
             <p className="text-muted-foreground leading-relaxed">
-              Have a project in mind or want to discuss opportunities? 
-              I'm always open to interesting conversations and collaborations.
+              Have a project in mind, a research collaboration, or just want to talk ML? I'm
+              always open to interesting conversations.
             </p>
           </div>
 
           <div className="grid gap-16 lg:grid-cols-2">
-            {/* Contact Form */}
+            {/* Form */}
             <div>
               <CodeDivider label="Send a Message" />
-              
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="font-mono text-sm">
@@ -67,7 +80,6 @@ export default function Contact() {
                     className="bg-card border-border font-mono text-sm"
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="email" className="font-mono text-sm">
                     <span className="text-primary">//</span> Email
@@ -81,7 +93,6 @@ export default function Contact() {
                     className="bg-card border-border font-mono text-sm"
                   />
                 </div>
-
                 <div className="space-y-2">
                   <Label htmlFor="message" className="font-mono text-sm">
                     <span className="text-primary">//</span> Message
@@ -95,7 +106,6 @@ export default function Contact() {
                     className="bg-card border-border font-mono text-sm resize-none"
                   />
                 </div>
-
                 <Button type="submit" disabled={isSubmitting} className="font-mono">
                   {isSubmitting ? (
                     "Sending..."
@@ -109,11 +119,10 @@ export default function Contact() {
               </form>
             </div>
 
-            {/* Social Links */}
+            {/* Socials */}
             <div>
               <CodeDivider label="Connect" />
-              
-              <div className="space-y-6">
+              <div className="space-y-4">
                 {socialLinks.map((link) => (
                   <a
                     key={link.label}
@@ -129,21 +138,25 @@ export default function Contact() {
                       <p className="font-mono text-sm text-foreground group-hover:text-primary transition-colors">
                         {link.label}
                       </p>
-                      <p className="font-mono text-xs text-muted-foreground">
-                        {link.handle}
-                      </p>
+                      <p className="font-mono text-xs text-muted-foreground">{link.handle}</p>
                     </div>
                   </a>
                 ))}
               </div>
 
-              {/* Availability */}
-              <div className="mt-8 p-4 bg-card border border-border rounded-lg">
-                <p className="font-mono text-xs text-muted-foreground mb-2">
-                  <span className="text-primary">/*</span> Availability <span className="text-primary">*/</span>
+              <div className="mt-8 p-4 bg-card border border-border rounded-lg space-y-3">
+                <p className="font-mono text-xs text-muted-foreground">
+                  <span className="text-primary">/*</span> Based in{" "}
+                  <span className="text-primary">*/</span>
                 </p>
-                <p className="text-sm text-foreground">
-                  Currently open to new opportunities and freelance projects.
+                <p className="text-sm text-foreground flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-primary" /> Bengaluru, Karnataka, India
+                </p>
+                <p className="text-sm text-foreground flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-primary" /> Available on request
+                </p>
+                <p className="font-mono text-xs text-primary pt-2 border-t border-border">
+                  {"//"} Currently open to internships & research collabs
                 </p>
               </div>
             </div>
