@@ -292,7 +292,47 @@ function ContactOutput() {
   );
 }
 
-function ZshView() {
+/** Secret easter egg output — scrambles into "I Love You" */
+function EasterEggOutput() {
+  const target = "I Love You";
+  const scrambleChars = "!<>-_\\/[]{}=+*^?#$%&";
+  const [text, setText] = useState("");
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    const totalFrames = 20;
+    let frame = 0;
+    const id = setInterval(() => {
+      frame++;
+      if (frame >= totalFrames) {
+        clearInterval(id);
+        setText(target);
+        setDone(true);
+        return;
+      }
+      const revealCount = Math.floor((frame / totalFrames) * target.length);
+      const scrambled = target
+        .split("")
+        .map((ch, i) => {
+          if (ch === " ") return " ";
+          if (i < revealCount) return ch;
+          return scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+        })
+        .join("");
+      setText(scrambled);
+    }, 45);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className={`text-lg font-bold tracking-wide ${done ? "th-love-text" : "text-destructive"}`}>
+      {text}
+      {done && " ❤️"}
+    </div>
+  );
+}
+
+function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
   const [booted, setBooted] = useState(false);
   const [bootLine, setBootLine] = useState(0);
   const [typed, setTyped] = useState("");
@@ -411,6 +451,10 @@ function ZshView() {
         break;
       case "sudo":
         push(<span className="text-destructive">Nice try. Permission denied.</span>);
+        break;
+      case "maisha_imran":
+        onEasterEgg?.();
+        push(<EasterEggOutput />);
         break;
       case "clear":
         setHistory([]);
@@ -579,9 +623,65 @@ const TABS: { id: Tab; label: string; icon: typeof FileJson2; iconClass: string 
 
 export function TerminalHero() {
   const [tab, setTab] = useState<Tab>("zsh");
+  const [egg, setEgg] = useState(false);
+  const eggTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const triggerEgg = () => {
+    setEgg(true);
+    if (eggTimer.current) clearTimeout(eggTimer.current);
+    eggTimer.current = setTimeout(() => setEgg(false), 950);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (eggTimer.current) clearTimeout(eggTimer.current);
+    };
+  }, []);
 
   return (
-    <div className="bg-card/90 backdrop-blur-sm rounded-lg border border-border shadow-2xl overflow-hidden font-mono text-sm">
+    <div
+      className={`bg-card/90 backdrop-blur-sm rounded-lg border border-border shadow-2xl overflow-hidden font-mono text-sm ${
+        egg ? "th-egg" : ""
+      }`}
+    >
+      <style>{`
+        @keyframes th-shake-kf {
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          10% { transform: translate(-3px, -2px) rotate(-0.4deg); }
+          20% { transform: translate(3px, 2px) rotate(0.4deg); }
+          30% { transform: translate(-4px, 1px); }
+          40% { transform: translate(4px, -2px); }
+          50% { transform: translate(-3px, 2px); }
+          60% { transform: translate(3px, -2px); }
+          70% { transform: translate(-2px, 1px); }
+          80% { transform: translate(2px, -1px); }
+          90% { transform: translate(-1px, 1px); }
+        }
+        @keyframes th-flash-kf {
+          0%, 100% { box-shadow: 0 0 0 rgba(244, 63, 94, 0); }
+          50% { box-shadow: 0 0 30px 6px rgba(244, 63, 94, 0.55); }
+        }
+        .th-egg {
+          animation: th-shake-kf 0.5s ease-in-out 2, th-flash-kf 0.3s ease-in-out 3;
+        }
+        @keyframes th-love-kf {
+          to { background-position: 200% center; }
+        }
+        @keyframes th-pulse-kf {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.06); }
+        }
+        .th-love-text {
+          display: inline-block;
+          background: linear-gradient(90deg, #ff6b81, #ff4d6d, #ff85a2, #ff4d6d, #ff6b81);
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          animation: th-love-kf 2s linear infinite, th-pulse-kf 1.2s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* Title bar */}
       <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
         <div className="w-3 h-3 rounded-full bg-destructive/70" />
@@ -612,7 +712,7 @@ export function TerminalHero() {
       <div className="p-5 md:p-6 min-h-[300px]">
         {tab === "bio" && <BioJsonView />}
         {tab === "agent" && <AgentPyView />}
-        {tab === "zsh" && <ZshView />}
+        {tab === "zsh" && <ZshView onEasterEgg={triggerEgg} />}
       </div>
     </div>
   );
