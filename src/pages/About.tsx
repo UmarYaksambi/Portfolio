@@ -4,28 +4,19 @@ import { TechTag } from "@/components/ui/TechTag";
 import { BookOpen, Award, School } from "lucide-react";
 
 const skills = {
-  languages: ["Python", "C++", "Embedded C", "SQL", "JavaScript", "TypeScript", "R"],
+  languages: ["Python", "C++", "TypeScript", "SQL", "Embedded C"],
   frameworks: [
-    "TensorFlow",
     "PyTorch",
-    "LangChain",
-    "OpenCV",
-    "YOLO",
+    "TensorFlow",
     "FastAPI",
-    "Flask",
-    "Flutter",
+    "Node.js",
     "React",
+    "Next.js",
+    "LangChain",
+    "GraphQL",
   ],
-  tools: [
-    "Git",
-    "GitHub",
-    "Supabase",
-    "Firebase",
-    "Android Studio",
-    "Linux",
-    "Figma",
-    "Docker",
-  ],
+  cloud: ["AWS", "GCP", "Kubernetes", "Docker", "GitHub Actions", "Nginx"],
+  databases: ["PostgreSQL", "MongoDB", "Redis", "Qdrant", "ChromaDB", "SQLite"],
 };
 
 const education = [
@@ -33,7 +24,7 @@ const education = [
     icon: BookOpen,
     title: "BE Computer Science & Engineering (Data Sciences)",
     org: "RV College of Engineering, Bengaluru",
-    detail: "CGPA: 9.12 · Expected Sep 2027",
+    detail: "CGPA: 9.12 · Sep 2023 – Jul 2027",
   },
   {
     icon: Award,
@@ -45,7 +36,7 @@ const education = [
     icon: School,
     title: "School",
     org: "St Paul's High School",
-    detail: "Grade: 88.45% · 2010 – 2021",
+    detail: "Grade: 88.45% · 2011 – 2021",
   },
 ];
 
@@ -63,28 +54,30 @@ export default function About() {
             <div className="lg:col-span-2 space-y-6">
               <div className="opacity-0 animate-fade-in-up stagger-1">
                 <p className="text-lg text-foreground leading-relaxed">
-                  I'm <span className="text-primary font-medium">Muhammad Umar Yaksambi</span>, a
-                  Computer Science student at RV College of Engineering, focused on machine
-                  learning, autonomous systems, and building things that ship. Currently maintaining
-                  a 9.12 CGPA while working on Gaussian splatting research at Samsung R&D and an AI
-                  sales copilot at SpikedAI.
+                  I'm <span className="text-primary font-medium">Muhammad Umar Yaksambi</span> —
+                  CS student at RVCE, currently a CPP-3 intern at{" "}
+                  <span className="text-primary">Hewlett Packard Enterprise</span> building an
+                  AI-powered defect intelligence system that maps CI/CD failures to Jira issues.
                 </p>
               </div>
 
               <div className="opacity-0 animate-fade-in-up stagger-2">
                 <p className="text-muted-foreground leading-relaxed">
-                  My work spans federated learning, embedded IoT mesh networks, computer vision,
-                  and full-stack product engineering. I care about systems that hold up under real
-                  constraints — privacy, low power, unreliable networks — not just demo-friendly
-                  models.
+                  Before HPE I spent 10 months as a Product Developer Intern at SpikedAI shipping
+                  a real-time AI Sales Copilot — FastAPI + Node backend at 500 RPS, RAG pipelines
+                  over a 100M+ token knowledge base, and multi-cloud infra across AWS and GCP.
+                  Before that, I worked on real-time 3D Gaussian Splatting on mobile at Samsung
+                  R&D's PRISM programme.
                 </p>
               </div>
 
               <div className="opacity-0 animate-fade-in-up stagger-3">
                 <p className="text-muted-foreground leading-relaxed">
-                  Outside of shipping code, I mentor juniors at the RVCE Coding Club, run
-                  workshops on APIs, LLMs, and competitive programming, and coordinate community
-                  initiatives with the Rotaract Club.
+                  I like scalable systems that don't panic when real people actually use them,
+                  AI that tries to understand human context, and the occasional rogue Python
+                  script. Outside of shipping I'm Vice President of the Coding Club at RVCE,
+                  running events for 1,000+ participants and mentoring juniors across dev, AI,
+                  and competitive programming.
                 </p>
               </div>
 
@@ -94,7 +87,7 @@ export default function About() {
 
               <div className="space-y-4 font-mono text-sm opacity-0 animate-fade-in-up stagger-4">
                 {[
-                  "Build for constraints — privacy, latency, power",
+                  "Build for the messy real world — scale, latency, failure modes",
                   "Prototype fast, then engineer for reliability",
                   "Measure impact, not lines of code",
                   "Ship, document, teach — in that order",
@@ -114,7 +107,7 @@ export default function About() {
                   {education.map((e) => (
                     <div
                       key={e.title}
-                      className="flex items-start gap-4 p-4 rounded-lg border border-border bg-card/60 hover:border-primary/40 transition-colors"
+                      className="flex items-start gap-4 p-4 rounded-lg border border-border bg-card/60 hover:border-primary/40 hover:-translate-y-0.5 transition-all"
                     >
                       <e.icon className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                       <div>
@@ -130,41 +123,28 @@ export default function About() {
 
             {/* Sidebar */}
             <div className="space-y-8">
-              <div className="opacity-0 animate-fade-in-up stagger-2">
-                <h2 className="font-mono text-sm text-primary mb-4">
-                  <span className="text-muted-foreground">/*</span> Languages{" "}
-                  <span className="text-muted-foreground">*/</span>
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {skills.languages.map((t) => (
-                    <TechTag key={t}>{t}</TechTag>
-                  ))}
+              {[
+                { title: "Languages", items: skills.languages },
+                { title: "Frameworks", items: skills.frameworks },
+                { title: "Cloud & DevOps", items: skills.cloud },
+                { title: "Databases", items: skills.databases },
+              ].map((group, i) => (
+                <div
+                  key={group.title}
+                  className="opacity-0 animate-fade-in-up"
+                  style={{ animationDelay: `${0.15 + i * 0.1}s` }}
+                >
+                  <h2 className="font-mono text-sm text-primary mb-4">
+                    <span className="text-muted-foreground">/*</span> {group.title}{" "}
+                    <span className="text-muted-foreground">*/</span>
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((t) => (
+                      <TechTag key={t}>{t}</TechTag>
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <div className="opacity-0 animate-fade-in-up stagger-3">
-                <h2 className="font-mono text-sm text-primary mb-4">
-                  <span className="text-muted-foreground">/*</span> Frameworks{" "}
-                  <span className="text-muted-foreground">*/</span>
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {skills.frameworks.map((t) => (
-                    <TechTag key={t}>{t}</TechTag>
-                  ))}
-                </div>
-              </div>
-
-              <div className="opacity-0 animate-fade-in-up stagger-4">
-                <h2 className="font-mono text-sm text-primary mb-4">
-                  <span className="text-muted-foreground">/*</span> Tools{" "}
-                  <span className="text-muted-foreground">*/</span>
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {skills.tools.map((t) => (
-                    <TechTag key={t}>{t}</TechTag>
-                  ))}
-                </div>
-              </div>
+              ))}
 
               <div className="opacity-0 animate-fade-in-up stagger-4 p-4 rounded-lg border border-border bg-card/60">
                 <p className="font-mono text-xs text-primary mb-2">
@@ -173,20 +153,20 @@ export default function About() {
                 </p>
                 <div className="grid grid-cols-2 gap-4 mt-3 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-primary font-mono">15+</div>
-                    <div className="text-xs text-muted-foreground">Projects</div>
+                    <div className="text-2xl font-bold text-primary font-mono">9.12</div>
+                    <div className="text-xs text-muted-foreground">CGPA</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-primary font-mono">3</div>
+                    <div className="text-2xl font-bold text-primary font-mono">500</div>
+                    <div className="text-xs text-muted-foreground">RPS @ SpikedAI</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-primary font-mono">4</div>
                     <div className="text-xs text-muted-foreground">Internships</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-primary font-mono">3</div>
-                    <div className="text-xs text-muted-foreground">Certifications</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary font-mono">Top 5%</div>
-                    <div className="text-xs text-muted-foreground">NPTEL Rank</div>
+                    <div className="text-2xl font-bold text-primary font-mono">300+</div>
+                    <div className="text-xs text-muted-foreground">Club Community</div>
                   </div>
                 </div>
               </div>

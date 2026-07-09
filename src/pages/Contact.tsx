@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Github, Linkedin, Mail, Phone, MapPin, Instagram, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin, Send, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const socialLinks = [
@@ -28,10 +28,10 @@ const socialLinks = [
     handle: "/in/umaryaksambi",
   },
   {
-    href: "https://instagram.com/umaryaksambi",
-    icon: Instagram,
-    label: "Instagram",
-    handle: "@umaryaksambi",
+    href: "https://umaryaksambi.vercel.app",
+    icon: Globe,
+    label: "Portfolio",
+    handle: "umaryaksambi.vercel.app",
   },
 ];
 
@@ -55,81 +55,53 @@ export default function Contact() {
     <Layout>
       <section className="py-20">
         <div className="container">
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-12 opacity-0 animate-fade-in-up">
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Contact</h1>
             <p className="text-muted-foreground leading-relaxed">
-              Have a project in mind, a research collaboration, or just want to talk ML? I'm
-              always open to interesting conversations.
+              Building something weird, genuinely useful, or that sounds like a terrible idea
+              at first? I probably want to hear about it.
             </p>
           </div>
 
           <div className="grid gap-16 lg:grid-cols-2">
-            {/* Form */}
-            <div>
+            <div className="opacity-0 animate-fade-in-up stagger-1">
               <CodeDivider label="Send a Message" />
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="font-mono text-sm">
                     <span className="text-primary">//</span> Name
                   </Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                    className="bg-card border-border font-mono text-sm"
-                  />
+                  <Input id="name" name="name" placeholder="Your name" required className="bg-card border-border font-mono text-sm" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email" className="font-mono text-sm">
                     <span className="text-primary">//</span> Email
                   </Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="your@email.com"
-                    required
-                    className="bg-card border-border font-mono text-sm"
-                  />
+                  <Input id="email" name="email" type="email" placeholder="your@email.com" required className="bg-card border-border font-mono text-sm" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message" className="font-mono text-sm">
                     <span className="text-primary">//</span> Message
                   </Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tell me about your project..."
-                    rows={6}
-                    required
-                    className="bg-card border-border font-mono text-sm resize-none"
-                  />
+                  <Textarea id="message" name="message" placeholder="Tell me about your project..." rows={6} required className="bg-card border-border font-mono text-sm resize-none" />
                 </div>
                 <Button type="submit" disabled={isSubmitting} className="font-mono">
-                  {isSubmitting ? (
-                    "Sending..."
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="ml-2 h-4 w-4" />
-                    </>
-                  )}
+                  {isSubmitting ? "Sending..." : (<>Send Message<Send className="ml-2 h-4 w-4" /></>)}
                 </Button>
               </form>
             </div>
 
-            {/* Socials */}
-            <div>
+            <div className="opacity-0 animate-fade-in-up stagger-2">
               <CodeDivider label="Connect" />
               <div className="space-y-4">
-                {socialLinks.map((link) => (
+                {socialLinks.map((link, i) => (
                   <a
                     key={link.label}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-primary/50 transition-colors group"
+                    className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-primary/50 hover:-translate-y-0.5 transition-all group opacity-0 animate-fade-in-up"
+                    style={{ animationDelay: `${0.25 + i * 0.08}s` }}
                   >
                     <div className="flex items-center justify-center w-12 h-12 bg-secondary rounded-lg group-hover:bg-primary/10 transition-colors">
                       <link.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
@@ -146,17 +118,16 @@ export default function Contact() {
 
               <div className="mt-8 p-4 bg-card border border-border rounded-lg space-y-3">
                 <p className="font-mono text-xs text-muted-foreground">
-                  <span className="text-primary">/*</span> Based in{" "}
-                  <span className="text-primary">*/</span>
+                  <span className="text-primary">/*</span> Based in <span className="text-primary">*/</span>
                 </p>
                 <p className="text-sm text-foreground flex items-center gap-2">
                   <MapPin className="w-4 h-4 text-primary" /> Bengaluru, Karnataka, India
                 </p>
                 <p className="text-sm text-foreground flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-primary" /> Available on request
+                  <Phone className="w-4 h-4 text-primary" /> +91 99025 78332
                 </p>
                 <p className="font-mono text-xs text-primary pt-2 border-t border-border">
-                  {"//"} Currently open to internships & research collabs
+                  {"//"} Open to internships, research collabs & weird side projects
                 </p>
               </div>
             </div>
