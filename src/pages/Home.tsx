@@ -277,29 +277,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fun teaser */}
-      <section className="py-20 border-t border-border">
-        <div className="container">
-          <div className="p-8 md:p-12 rounded-2xl border border-primary/30 bg-gradient-to-br from-primary/10 via-card/60 to-transparent relative overflow-hidden opacity-0 animate-fade-in-up">
-            <Sparkles className="absolute top-6 right-6 w-8 h-8 text-primary/40 animate-pulse" />
-            <p className="font-mono text-xs text-primary mb-3">{"// off the clock"}</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
-              There's a room in here I don't put on my resume.
-            </h2>
-            <p className="text-muted-foreground max-w-xl mb-6">
-              Konami codes, terminal easter eggs, a matrix rain and things I built purely for
-              fun. Take a peek.
-            </p>
-            <Button asChild className="font-mono">
-              <Link to="/fun">
-                Enter the fun zone
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       {/* Contact CTA */}
       <section id="contact" className="py-20 border-t border-border scroll-mt-16">
         <div className="container text-center max-w-2xl opacity-0 animate-fade-in-up">
