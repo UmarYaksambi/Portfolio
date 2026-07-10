@@ -15,17 +15,26 @@ export function Footer() {
       <div className="container py-8">
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
           <p className="font-mono text-sm text-muted-foreground">
-            <span className="text-primary">//</span> © {currentYear} Muhammad Umar Yaksambi
+            <span className="text-primary">//</span> © {currentYear} Umar Yaksambi
           </p>
 
-          <div className="flex items-center gap-6">
-            <Link
-              to="/styleguide"
-              className="font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
-            >
+          <nav className="flex items-center gap-x-4 gap-y-2 flex-wrap justify-center font-mono text-sm text-muted-foreground">
+            <Link to="/now" className="hover:text-primary transition-colors">
+              Now
+            </Link>
+            <span className="text-border">·</span>
+            <Link to="/uptime" className="hover:text-primary transition-colors">
+              Uptime
+            </Link>
+            <span className="text-border">·</span>
+            <Link to="/decisions" className="hover:text-primary transition-colors">
+              Decisions
+            </Link>
+            <span className="text-border">·</span>
+            <Link to="/styleguide" className="hover:text-primary transition-colors">
               Styleguide
             </Link>
-          </div>
+          </nav>
 
           <div className="flex items-center gap-4">
             {socialLinks.map((link) => (

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -77,9 +78,41 @@ const timelinePreview = [
   },
 ];
 
+const taglines = [
+  "I build systems that don't panic in production",
+  "I write code that stays calm under load",
+  "I ship backends that don't blink at 3am",
+  "I build things that fail gracefully, not loudly",
+  "I turn spaghetti requirements into stable systems",
+  "I make machines learn without losing their minds",
+  "I build APIs that don't flinch at traffic spikes",
+  "I debug in production so you don't have to",
+  "I build systems, not just Kanban tickets",
+  "I make sure the pager stays quiet",
+  "I build pipelines that don't clog under pressure",
+  "I turn edge cases into non-issues",
+  "I build software that behaves — mostly",
+];
+
 export default function Home() {
+  // Pick one random tagline per page load/mount — stays fixed until reload
+  const [taglineIndex] = useState(() => Math.floor(Math.random() * taglines.length));
+
   return (
     <Layout>
+      <style>{`
+        @font-face {
+          font-family: "Brittany Signature";
+          src: url("/fonts/BrittanySignature.woff2") format("woff2"),
+               url("/fonts/BrittanySignature.woff") format("woff");
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+        .signature-name {
+          font-family: "Brittany Signature", "Alex Brush", "Segoe Script", cursive;
+        }
+      `}</style>
       {/* Hero */}
       <section
         id="hero"
@@ -112,10 +145,14 @@ export default function Home() {
               <CodeLabel className="mb-6">Backend · ML · Full-Stack Engineer</CodeLabel>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Hi, I'm <span className="text-primary">Umar</span>.
+                Hi, I'm{" "}
+                <span className="signature-name text-primary text-6xl md:text-7xl lg:text-8xl font-normal inline-block -my-2 md:-my-4 align-middle">
+                  Umar
+                </span>
+                .
                 <br />
                 <span className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl">
-                  I build systems that don't panic in production
+                  {taglines[taglineIndex]}
                 </span>
                 <span className="animate-blink text-primary ml-1">▍</span>
               </h1>
