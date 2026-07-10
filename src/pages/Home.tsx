@@ -102,15 +102,15 @@ export default function Home() {
     <Layout>
       <style>{`
         @font-face {
-          font-family: "Brittany Signature";
-          src: url("/fonts/BrittanySignature.woff2") format("woff2"),
-               url("/fonts/BrittanySignature.woff") format("woff");
+          font-family: "Segoe Script Web";
+          src: url("/fonts/SegoeScript.ttf") format("truetype");
           font-weight: normal;
           font-style: normal;
           font-display: swap;
         }
+
         .signature-name {
-          font-family: "Brittany Signature", "Alex Brush", "Segoe Script", cursive;
+          font-family: "Segoe Script Web", cursive;
         }
       `}</style>
       {/* Hero */}
