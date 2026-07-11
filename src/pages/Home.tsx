@@ -146,7 +146,7 @@ export default function Home() {
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight">
                 Hi, I'm{" "}
-                <span className="signature-name text-primary text-6xl md:text-7xl lg:text-8xl font-normal inline-block -my-2 md:-my-4 align-middle">
+                <span className="signature-name text-primary text-5xl md:text-7xl lg:text-8xl font-normal inline-block -my-2 md:-my-4 align-middle">
                   Umar
                 </span>
                 .
