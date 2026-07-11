@@ -42,13 +42,42 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 800));
-    toast({
-      title: "Message sent",
-      description: "Thanks for reaching out — I'll get back to you soon.",
-    });
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      message: formData.get("message"),
+      botcheck: formData.get("botcheck"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = await res.json();
+
+      if (result.success) {
+        toast({
+          title: "Message sent",
+          description: "Thanks for reaching out — I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        throw new Error(result.message || "Submission failed");
+      }
+    } catch (err) {
+      toast({
+        title: "Something went wrong",
+        description: "Please try again, or email me directly at umaryaksambi@gmail.com.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -67,6 +96,17 @@ export default function Contact() {
             <div className="opacity-0 animate-fade-in-up stagger-1">
               <CodeDivider label="Send a Message" />
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Honeypot — invisible to real users, catches bots. Our
+                    /api/contact function silently drops any submission
+                    where this field is filled. */}
+                <input
+                  type="checkbox"
+                  name="botcheck"
+                  className="hidden"
+                  style={{ display: "none" }}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
                 <div className="space-y-2">
                   <Label htmlFor="name" className="font-mono text-sm">
                     <span className="text-primary">//</span> Name
