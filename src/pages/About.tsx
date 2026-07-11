@@ -1,6 +1,8 @@
 import { Layout } from "@/components/layout/Layout";
 import { CodeDivider } from "@/components/ui/CodeDivider";
 import { TechTag } from "@/components/ui/TechTag";
+import { AsciiPortrait } from "@/components/AsciiPortrait";
+import { portraitAscii } from "@/data/portraitAscii";
 import { BookOpen, Award, School } from "lucide-react";
 
 const skills = {
@@ -123,6 +125,10 @@ export default function About() {
 
             {/* Sidebar */}
             <div className="space-y-8">
+              <div className="opacity-0 animate-fade-in-up -mt-6">
+                <AsciiPortrait data={portraitAscii} fontSize="8px" className="w-full" />
+              </div>
+
               {[
                 { title: "Languages", items: skills.languages },
                 { title: "Frameworks", items: skills.frameworks },
