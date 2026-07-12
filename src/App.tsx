@@ -26,20 +26,22 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/work/:slug" element={<ProjectDetail />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/styleguide" element={<Styleguide />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/uptime" element={<Uptime />} />
-          <Route path="/now" element={<Now />} />
-          <Route path="/decisions" element={<Decisions />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <ClickSpark sparkColor="#39ff14" sparkSize={12} sparkRadius={20} sparkCount={10} duration={500}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/work" element={<Work />} />
+            <Route path="/work/:slug" element={<ProjectDetail />} />
+            <Route path="/experience" element={<Experience />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/styleguide" element={<Styleguide />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/uptime" element={<Uptime />} />
+            <Route path="/now" element={<Now />} />
+            <Route path="/decisions" element={<Decisions />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ClickSpark>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
