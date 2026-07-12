@@ -4,6 +4,7 @@ import { TechTag } from "@/components/ui/TechTag";
 import { AsciiPortrait } from "@/components/AsciiPortrait";
 import { portraitAscii } from "@/data/portraitAscii";
 import { BookOpen, Award, School } from "lucide-react";
+import DecryptedText from "@/components/DecryptedText";
 
 const skills = {
   languages: ["Python", "C++", "TypeScript", "SQL", "Embedded C"],
@@ -48,7 +49,9 @@ export default function About() {
       <section className="py-20">
         <div className="container">
           <div className="max-w-3xl mb-12 opacity-0 animate-fade-in-up">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">About</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <DecryptedText text="About" animateOn="view" sequential speed={60} />
+            </h1>
           </div>
 
           <div className="grid gap-16 lg:grid-cols-3">
