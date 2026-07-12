@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { CodeDivider } from "@/components/ui/CodeDivider";
+import DecryptedText from "@/components/DecryptedText";
 import {
   Brain,
   Cpu,
@@ -189,7 +190,9 @@ export default function Experience() {
       <section className="py-20">
         <div className="container">
           <div className="max-w-2xl mb-12 opacity-0 animate-fade-in-up">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Experience</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <DecryptedText text="Experience" animateOn="view" sequential speed={60} />
+            </h1>
             <p className="text-muted-foreground leading-relaxed">
               Internships, research, certifications, and community work. Tap any card to
               expand highlights.

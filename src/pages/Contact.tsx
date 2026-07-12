@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Github, Linkedin, Mail, Phone, MapPin, Send, Globe } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import DecryptedText from "@/components/DecryptedText";
 
 const socialLinks = [
   {
@@ -85,7 +86,9 @@ export default function Contact() {
       <section className="py-20">
         <div className="container">
           <div className="max-w-2xl mb-12 opacity-0 animate-fade-in-up">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Contact</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <DecryptedText text="Contact" animateOn="view" sequential speed={60} />
+            </h1>
             <p className="text-muted-foreground leading-relaxed">
               Building something weird, genuinely useful, or that sounds like a terrible idea
               at first? I probably want to hear about it.
