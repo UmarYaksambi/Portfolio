@@ -67,7 +67,9 @@ export default function Work() {
       <section className="py-20">
         <div className="container">
           <div className="max-w-2xl mb-12 opacity-0 animate-fade-in-up">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">Work</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              <DecryptedText text="Work" animateOn="view" sequential speed={60} />
+            </h1>
             <p className="text-muted-foreground leading-relaxed">
               A selection of projects across AI systems, machine learning research, embedded
               networks, and full-stack platforms. Each one ships against real constraints.
