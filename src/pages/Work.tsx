@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout/Layout";
 import { CodeDivider } from "@/components/ui/CodeDivider";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import DecryptedText from "@/components/DecryptedText";
 
 const projects = [
   {
