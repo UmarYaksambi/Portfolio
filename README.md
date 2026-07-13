@@ -1,73 +1,170 @@
-# Welcome to your Lovable project
+# Umar Yaksambi's Developer Portfolio :))))
 
-## Project info
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
-## How can I edit this code?
+> **A minimalist, high-performance personal portfolio built to showcase full-stack engineering and machine learning projects.**
+> This portfolio serves as a centralized hub for professional experiences, technical writing, and complex system architectures. It features a *clean, dark-mode compatible UI*, *interactive project showcases*, and a *modular component design* to present quality engineering in a simple and accessible format.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+[💚 Live Portfolio](https://www.google.com/search?q=https://UmarYaksambi.vercel.app)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🌍 Why This Portfolio?
 
-Changes made via Lovable will be committed automatically to this repo.
+A developer's portfolio should be more than just a digital resume; it should be a testament to their engineering standards.
 
-**Use your preferred IDE**
+This project is built to demonstrate:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+* 📶 **High-performance, responsive design**
+* 🌐 **Modern React ecosystem practices**
+* 🧠 **Seamless integration of complex project details (RAG, Federated Learning)**
+* 🏫 **Clean, scalable codebase architecture**
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Whether you are a recruiter reviewing my engineering internship experience or a fellow developer exploring 3D rendering implementations, this platform adapts to provide a seamless browsing experience.
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## ✨ Core Features
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### 🧠 Interactive Project Showcase
 
-# Step 3: Install the necessary dependencies.
-npm i
+The portfolio doesn't just list projects — it **provides deep technical context**.
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+* **Detailed Case Studies**
+Dedicated views for projects like B2B Sales Copilots and Clinical Data Platforms (MedQuery), complete with architecture breakdowns.
+
+
+* **Technology Tagging**
+Each project is dynamically tagged with its core stack (e.g., TypeScript, FastAPI, Supabase).
+
+
+
+---
+
+### 💬 Dark-Mode First UI
+
+Designed for developers, prioritizing readability and visual hierarchy.
+
+* 🧩 **High-Contrast Aesthetics**
+Uses tailored Tailwind CSS configurations with specific contrast requirements for dark environments.
+
+
+* 📈 **Smooth Animations**
+Interactive components powered by Radix UI primitives and custom CSS.
+
+
+
+---
+
+### 📅 Dynamic Content Modules
+
+Built to scale as new experiences are added.
+
+* **Experience Timeline**
+Structured layout detailing professional roles and technical handovers.
+
+
+* **"Now" Page**
+A dedicated section sharing current focuses, such as researching Gaussian Splatting or building new federated learning systems.
+
+
+
+---
+
+## 🛠️ Technical Architecture
+
+This portfolio is built with performance, modularity, and developer experience in mind.
+
+| Layer | Technology | Purpose |
+| --- | --- | --- |
+| **Framework** | **React + Vite** | Fast, modern SPA build |
+| **Language** | **TypeScript** | End-to-end type safety |
+| **Styling** | **Tailwind CSS** | Custom design system |
+| **UI Components** | **shadcn/ui** | Accessible UI elements |
+| **Deployment** | **Vercel** | Hosting & CI/CD |
+| **Icons** | **Lucide React** | Consistent iconography |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+* Node.js **18+** or Bun
+* npm / yarn / bun
+
+---
+
+### Installation
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/UmarYaksambi/UmarYaksambi-Portfolio.git
+cd UmarYaksambi-Portfolio
+
 ```
 
-**Edit a file directly in GitHub**
+2. **Install dependencies**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm install
+# or
+bun install
 
-**Use GitHub Codespaces**
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+3. **Run the development server**
 
-## What technologies are used for this project?
+```bash
+npm run dev
+# or 
+bun run dev
 
-This project is built with:
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+4. **Open in your browser**
 
-## How can I deploy this project?
+```
+http://localhost:5173
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```
 
-## Can I connect a custom domain to my Lovable project?
+---
 
-Yes, you can!
+## 📂 Project Structure
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```bash
+UmarYaksambi-Portfolio/
+├── api/              # Serverless API routes[cite: 1]
+├── public/           # Static assets, fonts, and resume PDF[cite: 1]
+├── src/
+│   ├── components/   # Reusable UI elements (shadcn/ui) and layout components[cite: 1]
+│   ├── data/         # Static content and data structures (e.g., portraitAscii)[cite: 1]
+│   ├── hooks/        # Custom React hooks (e.g., use-mobile, use-toast)[cite: 1]
+│   ├── lib/          # Utility functions[cite: 1]
+│   ├── pages/        # Route components (About, Experience, Work, etc.)[cite: 1]
+│   ├── App.tsx       # Root application component[cite: 1]
+│   └── main.tsx      # Application entry point[cite: 1]
+├── tailwind.config.ts # Styling configuration[cite: 1]
+└── vercel.json       # Deployment configuration[cite: 1]
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```
+
+---
+
+## 📄 License
+
+Licensed under the **MIT License**.
+See `LICENSE` for details.
+
+---
+
+
+<div align="center">
+
+**Built with ❤️ by Umar Yaksambi**
+
+[GitHub](https://github.com/UmarYaksambi/Portfolio) • [Website](https://UmarYaksambi.vercel.app) • [Buy Me Coffee](https://https://buymeacoffee.com/UmarYaksambi)
+
+</div>
