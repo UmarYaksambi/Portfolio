@@ -80,7 +80,11 @@ const experience = [
 
 const certifications = [
   { name: "Data Science for Engineers", org: "NPTEL", achievement: "Gold — Top 5%ile" },
-  { name: "Machine Learning Specialization", org: "Stanford & DeepLearning.AI", achievement: "Completed" },
+  {
+    name: "Machine Learning Specialization",
+    org: "Stanford & DeepLearning.AI",
+    achievement: "Completed",
+  },
   { name: "CS50x", org: "Harvard University", achievement: "Completed" },
   { name: "AWS Academy — Data Engineering", org: "AWS Academy", achievement: "Graduate" },
 ];
@@ -117,40 +121,42 @@ function ExperienceCard({
     <article
       className={cn(
         "rounded-lg border border-border bg-card/60 transition-all",
-        open ? "border-primary/40 shadow-[0_0_24px_hsl(var(--primary)/0.08)]" : "hover:border-primary/40"
+        open
+          ? "border-primary/40 shadow-[0_0_24px_hsl(var(--primary)/0.08)]"
+          : "hover:border-primary/40"
       )}
     >
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="w-full text-left p-6 flex items-start gap-5"
+        className="flex w-full items-start gap-5 p-6 text-left"
       >
-        <div className="flex-shrink-0 w-12 h-12 rounded-md border border-primary/30 bg-primary/10 flex items-center justify-center">
-          <Icon className="w-5 h-5 text-primary" />
+        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-md border border-primary/30 bg-primary/10">
+          <Icon className="h-5 w-5 text-primary" />
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-2">
+        <div className="min-w-0 flex-1">
+          <div className="mb-2 flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
             <div>
               <h3 className="font-mono text-base font-semibold text-primary">{exp.role}</h3>
-              <p className="text-foreground font-medium">{exp.company}</p>
+              <p className="font-medium text-foreground">{exp.company}</p>
             </div>
-            <div className="flex flex-col md:items-end gap-1 font-mono text-xs text-muted-foreground">
+            <div className="flex flex-col gap-1 font-mono text-xs text-muted-foreground md:items-end">
               <span className="inline-flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5" />
+                <Calendar className="h-3.5 w-3.5" />
                 {exp.period}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5" />
+                <MapPin className="h-3.5 w-3.5" />
                 {exp.location}
               </span>
             </div>
           </div>
-          <p className="text-sm text-muted-foreground leading-relaxed">{exp.summary}</p>
+          <p className="text-sm leading-relaxed text-muted-foreground">{exp.summary}</p>
         </div>
         <ChevronDown
           className={cn(
-            "w-5 h-5 text-muted-foreground flex-shrink-0 mt-1 transition-transform duration-300",
+            "mt-1 h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform duration-300",
             open && "rotate-180 text-primary"
           )}
         />
@@ -164,14 +170,14 @@ function ExperienceCard({
         <div className="overflow-hidden">
           <div className="px-6 pb-6 pl-[92px]">
             <div className="border-t border-border pt-4">
-              <p className="font-mono text-xs text-primary mb-3">
+              <p className="mb-3 font-mono text-xs text-primary">
                 <span className="text-muted-foreground">/*</span> Highlights{" "}
                 <span className="text-muted-foreground">*/</span>
               </p>
               <ul className="space-y-2">
                 {exp.highlights.map((h) => (
                   <li key={h} className="flex items-start gap-3 text-sm text-muted-foreground">
-                    <span className="font-mono text-primary mt-0.5">→</span>
+                    <span className="mt-0.5 font-mono text-primary">→</span>
                     <span>{h}</span>
                   </li>
                 ))}
@@ -189,24 +195,24 @@ export default function Experience() {
     <Layout>
       <section className="py-20">
         <div className="container">
-          <div className="max-w-2xl mb-12 opacity-0 animate-fade-in-up">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="mb-12 max-w-2xl animate-fade-in-up opacity-0">
+            <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
               <DecryptedText text="Experience" animateOn="view" sequential speed={60} />
             </h1>
-            <p className="text-muted-foreground leading-relaxed">
-              Internships, research, certifications, and community work. Tap any card to
-              expand highlights.
+            <p className="leading-relaxed text-muted-foreground">
+              Internships, research, certifications, and community work. Tap any card to expand
+              highlights.
             </p>
           </div>
 
-          <div className="opacity-0 animate-fade-in-up stagger-1">
+          <div className="stagger-1 animate-fade-in-up opacity-0">
             <CodeDivider label="Work" />
           </div>
-          <div className="space-y-4 mb-16">
+          <div className="mb-16 space-y-4">
             {experience.map((exp, i) => (
               <div
                 key={exp.company + exp.role}
-                className="opacity-0 animate-fade-in-up"
+                className="animate-fade-in-up opacity-0"
                 style={{ animationDelay: `${0.1 + i * 0.08}s` }}
               >
                 <ExperienceCard exp={exp} defaultOpen={i === 0} />
@@ -214,19 +220,19 @@ export default function Experience() {
             ))}
           </div>
 
-          <div className="opacity-0 animate-fade-in-up stagger-1">
+          <div className="stagger-1 animate-fade-in-up opacity-0">
             <CodeDivider label="Certifications" />
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-16">
+          <div className="mb-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {certifications.map((c, i) => (
               <div
                 key={c.name}
-                className="p-5 rounded-lg border border-border bg-card/60 hover:border-primary/40 hover:-translate-y-1 transition-all opacity-0 animate-fade-in-up"
+                className="animate-fade-in-up rounded-lg border border-border bg-card/60 p-5 opacity-0 transition-all hover:-translate-y-1 hover:border-primary/40"
                 style={{ animationDelay: `${0.1 + i * 0.08}s` }}
               >
-                <Award className="w-5 h-5 text-primary mb-3" />
-                <h4 className="text-foreground font-semibold mb-1">{c.name}</h4>
-                <p className="text-sm text-muted-foreground mb-2">{c.org}</p>
+                <Award className="mb-3 h-5 w-5 text-primary" />
+                <h4 className="mb-1 font-semibold text-foreground">{c.name}</h4>
+                <p className="mb-2 text-sm text-muted-foreground">{c.org}</p>
                 <p className="font-mono text-xs text-primary">
                   <span className="text-muted-foreground">{"//"}</span> {c.achievement}
                 </p>
@@ -234,30 +240,30 @@ export default function Experience() {
             ))}
           </div>
 
-          <div className="opacity-0 animate-fade-in-up stagger-1">
+          <div className="stagger-1 animate-fade-in-up opacity-0">
             <CodeDivider label="Leadership & Societies" />
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {societies.map((s, i) => (
               <article
                 key={s.role + s.period}
-                className="p-6 rounded-lg border border-border bg-card/60 hover:border-primary/40 transition-colors opacity-0 animate-fade-in-up"
+                className="animate-fade-in-up rounded-lg border border-border bg-card/60 p-6 opacity-0 transition-colors hover:border-primary/40"
                 style={{ animationDelay: `${0.1 + i * 0.1}s` }}
               >
-                <div className="flex items-start justify-between mb-3">
+                <div className="mb-3 flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <s.icon className="w-5 h-5 text-primary" />
+                    <s.icon className="h-5 w-5 text-primary" />
                     <div>
                       <h4 className="font-mono text-sm font-semibold text-primary">{s.role}</h4>
                       <p className="text-foreground">{s.org}</p>
                     </div>
                   </div>
-                  <span className="font-mono text-xs text-muted-foreground inline-flex items-center gap-1.5 whitespace-nowrap">
-                    <Calendar className="w-3.5 h-3.5" />
+                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap font-mono text-xs text-muted-foreground">
+                    <Calendar className="h-3.5 w-3.5" />
                     {s.period}
                   </span>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">{s.description}</p>
+                <p className="text-sm leading-relaxed text-muted-foreground">{s.description}</p>
               </article>
             ))}
           </div>

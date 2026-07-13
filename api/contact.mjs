@@ -116,9 +116,7 @@ export default async function handler(req, res) {
   }
 
   if (!RESEND_API_KEY) {
-    return res
-      .status(500)
-      .json({ success: false, message: "Email service not configured" });
+    return res.status(500).json({ success: false, message: "Email service not configured" });
   }
 
   let body = req.body;

@@ -22,7 +22,7 @@ export function CodeDivider({ label, className }: CodeDividerProps) {
           encryptedClassName="text-primary/70"
         />
       </span>
-      <div className="flex-1 h-px bg-border" />
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }

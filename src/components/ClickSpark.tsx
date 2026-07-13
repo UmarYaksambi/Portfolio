@@ -144,10 +144,7 @@ const ClickSpark = ({
   };
 
   return (
-    <div
-      style={{ position: "relative", width: "100%", height: "100%" }}
-      onClick={handleClick}
-    >
+    <div style={{ position: "relative", width: "100%", height: "100%" }} onClick={handleClick}>
       <canvas
         ref={canvasRef}
         style={{

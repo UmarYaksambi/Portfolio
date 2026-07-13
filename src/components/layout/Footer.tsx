@@ -18,20 +18,20 @@ export function Footer() {
             <span className="text-primary">//</span> © {currentYear} Umar Yaksambi
           </p>
 
-          <nav className="flex items-center gap-x-4 gap-y-2 flex-wrap justify-center font-mono text-sm text-muted-foreground">
-            <Link to="/now" className="hover:text-primary transition-colors">
+          <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 font-mono text-sm text-muted-foreground">
+            <Link to="/now" className="transition-colors hover:text-primary">
               Now
             </Link>
             <span className="text-border">·</span>
-            <Link to="/uptime" className="hover:text-primary transition-colors">
+            <Link to="/uptime" className="transition-colors hover:text-primary">
               Uptime
             </Link>
             <span className="text-border">·</span>
-            <Link to="/decisions" className="hover:text-primary transition-colors">
+            <Link to="/decisions" className="transition-colors hover:text-primary">
               Decisions
             </Link>
             <span className="text-border">·</span>
-            <Link to="/styleguide" className="hover:text-primary transition-colors">
+            <Link to="/styleguide" className="transition-colors hover:text-primary">
               Styleguide
             </Link>
           </nav>
@@ -43,7 +43,7 @@ export function Footer() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground transition-colors hover:text-primary"
                 aria-label={link.label}
               >
                 <link.icon className="h-5 w-5" />

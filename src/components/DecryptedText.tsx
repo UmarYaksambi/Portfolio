@@ -18,8 +18,10 @@ const styles: { wrapper: React.CSSProperties; srOnly: React.CSSProperties } = {
   },
 };
 
-export interface DecryptedTextProps
-  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "onAnimationStart" | "onAnimationEnd" | "onDrag" | "onDragEnd" | "onDragStart"> {
+export interface DecryptedTextProps extends Omit<
+  React.HTMLAttributes<HTMLSpanElement>,
+  "onAnimationStart" | "onAnimationEnd" | "onDrag" | "onDragEnd" | "onDragStart"
+> {
   text: string;
   speed?: number;
   maxIterations?: number;
@@ -344,8 +346,8 @@ export default function DecryptedText({
     animateOn === "hover" || animateOn === "inViewHover"
       ? { onMouseEnter: triggerHoverDecrypt, onMouseLeave: resetToPlainText }
       : animateOn === "click"
-      ? { onClick: handleClick }
-      : {};
+        ? { onClick: handleClick }
+        : {};
 
   return (
     <motion.span

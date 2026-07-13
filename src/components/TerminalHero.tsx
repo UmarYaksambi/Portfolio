@@ -73,7 +73,16 @@ const PROJECTS = [
 
 const SKILLS = {
   Languages: ["Python", "C++", "TypeScript", "SQL", "Embedded C"],
-  "Frameworks & Libraries": ["PyTorch", "TensorFlow", "FastAPI", "Node.js", "React", "Next.js", "LangChain", "GraphQL"],
+  "Frameworks & Libraries": [
+    "PyTorch",
+    "TensorFlow",
+    "FastAPI",
+    "Node.js",
+    "React",
+    "Next.js",
+    "LangChain",
+    "GraphQL",
+  ],
   "Cloud & DevOps": ["AWS", "GCP", "Kubernetes", "Docker", "GitHub Actions", "Nginx"],
   Databases: ["PostgreSQL", "MongoDB", "Redis", "Qdrant", "ChromaDB"],
 };
@@ -114,20 +123,115 @@ function BioJsonView() {
 
   const lines: { indent: number; node: React.ReactNode }[] = [
     { indent: 0, node: <span className={c.punct}>{"{"}</span> },
-    { indent: 1, node: <><span className={c.key}>"name"</span><span className={c.punct}>: </span><span className={c.str}>"{PROFILE.name}"</span><span className={c.punct}>,</span></> },
-    { indent: 1, node: <><span className={c.key}>"role"</span><span className={c.punct}>: </span><span className={c.str}>"{PROFILE.role}"</span><span className={c.punct}>,</span></> },
-    { indent: 1, node: <><span className={c.key}>"college"</span><span className={c.punct}>: </span><span className={c.str}>"{PROFILE.college}"</span><span className={c.punct}>,</span></> },
-    { indent: 1, node: <><span className={c.key}>"degree"</span><span className={c.punct}>: </span><span className={c.str}>"{PROFILE.degree}"</span><span className={c.punct}>,</span></> },
-    { indent: 1, node: <><span className={c.key}>"cgpa"</span><span className={c.punct}>: </span><span className={c.num}>{PROFILE.cgpa}</span><span className={c.punct}>,</span></> },
-    { indent: 1, node: <><span className={c.key}>"currentRole"</span><span className={c.punct}>: </span><span className={c.str}>"HPE CPP3 Intern"</span><span className={c.punct}>,</span></> },
-    { indent: 1, node: <><span className={c.key}>"skills"</span><span className={c.punct}>: [</span></> },
-    ...Object.values(SKILLS).flat().slice(0, 6).map((s, i, arr) => ({
-      indent: 2,
-      node: <><span className={c.str}>"{s}"</span>{i < arr.length - 1 ? <span className={c.punct}>,</span> : null}</>,
-    })),
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"name"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.str}>"{PROFILE.name}"</span>
+          <span className={c.punct}>,</span>
+        </>
+      ),
+    },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"role"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.str}>"{PROFILE.role}"</span>
+          <span className={c.punct}>,</span>
+        </>
+      ),
+    },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"college"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.str}>"{PROFILE.college}"</span>
+          <span className={c.punct}>,</span>
+        </>
+      ),
+    },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"degree"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.str}>"{PROFILE.degree}"</span>
+          <span className={c.punct}>,</span>
+        </>
+      ),
+    },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"cgpa"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.num}>{PROFILE.cgpa}</span>
+          <span className={c.punct}>,</span>
+        </>
+      ),
+    },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"currentRole"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.str}>"HPE CPP3 Intern"</span>
+          <span className={c.punct}>,</span>
+        </>
+      ),
+    },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"skills"</span>
+          <span className={c.punct}>: [</span>
+        </>
+      ),
+    },
+    ...Object.values(SKILLS)
+      .flat()
+      .slice(0, 6)
+      .map((s, i, arr) => ({
+        indent: 2,
+        node: (
+          <>
+            <span className={c.str}>"{s}"</span>
+            {i < arr.length - 1 ? <span className={c.punct}>,</span> : null}
+          </>
+        ),
+      })),
     { indent: 1, node: <span className={c.punct}>{"],"}</span> },
-    { indent: 1, node: <><span className={c.key}>"location"</span><span className={c.punct}>: </span><span className={c.str}>"{PROFILE.location}"</span><span className={c.punct}>,</span></> },
-    { indent: 1, node: <><span className={c.key}>"status"</span><span className={c.punct}>: </span><span className={c.str}>"{PROFILE.status}"</span></> },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"location"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.str}>"{PROFILE.location}"</span>
+          <span className={c.punct}>,</span>
+        </>
+      ),
+    },
+    {
+      indent: 1,
+      node: (
+        <>
+          <span className={c.key}>"status"</span>
+          <span className={c.punct}>: </span>
+          <span className={c.str}>"{PROFILE.status}"</span>
+        </>
+      ),
+    },
     { indent: 0, node: <span className={c.punct}>{"}"}</span> },
   ];
 
@@ -164,23 +268,104 @@ function BioJsonView() {
 function AgentPyView() {
   return (
     <div className="space-y-[3px] whitespace-pre">
-      <div><span className={c.kw}>class</span> <span className={c.fn}>Umar</span><span className={c.punct}>(</span><span className={c.fn}>Engineer</span><span className={c.punct}>):</span></div>
-      <div className="pl-4"><span className={c.comment}># {PROFILE.degree}, CGPA {PROFILE.cgpa}</span></div>
-      <div className="pl-4"><span className={c.kw}>def</span> <span className={c.fn}>__init__</span><span className={c.punct}>(</span><span className={c.primary}>self</span><span className={c.punct}>):</span></div>
-      <div className="pl-8"><span className={c.primary}>self</span><span className={c.punct}>.</span><span className={c.key}>name</span> <span className={c.punct}>=</span> <span className={c.str}>"{PROFILE.name}"</span></div>
-      <div className="pl-8"><span className={c.primary}>self</span><span className={c.punct}>.</span><span className={c.key}>role</span> <span className={c.punct}>=</span> <span className={c.str}>"{PROFILE.role}"</span></div>
-      <div className="pl-8"><span className={c.primary}>self</span><span className={c.punct}>.</span><span className={c.key}>stack</span> <span className={c.punct}>=</span> <span className={c.punct}>[</span><span className={c.str}>"PyTorch"</span><span className={c.punct}>,</span> <span className={c.str}>"FastAPI"</span><span className={c.punct}>,</span> <span className={c.str}>"React"</span><span className={c.punct}>,</span> <span className={c.str}>"AWS"</span><span className={c.punct}>]</span></div>
-      <div className="pl-8"><span className={c.primary}>self</span><span className={c.punct}>.</span><span className={c.key}>focus</span> <span className={c.punct}>=</span> <span className={c.punct}>(</span><span className={c.str}>"backend"</span><span className={c.punct}>,</span> <span className={c.str}>"ml"</span><span className={c.punct}>,</span> <span className={c.str}>"systems"</span><span className={c.punct}>)</span></div>
+      <div>
+        <span className={c.kw}>class</span> <span className={c.fn}>Umar</span>
+        <span className={c.punct}>(</span>
+        <span className={c.fn}>Engineer</span>
+        <span className={c.punct}>):</span>
+      </div>
+      <div className="pl-4">
+        <span className={c.comment}>
+          # {PROFILE.degree}, CGPA {PROFILE.cgpa}
+        </span>
+      </div>
+      <div className="pl-4">
+        <span className={c.kw}>def</span> <span className={c.fn}>__init__</span>
+        <span className={c.punct}>(</span>
+        <span className={c.primary}>self</span>
+        <span className={c.punct}>):</span>
+      </div>
+      <div className="pl-8">
+        <span className={c.primary}>self</span>
+        <span className={c.punct}>.</span>
+        <span className={c.key}>name</span> <span className={c.punct}>=</span>{" "}
+        <span className={c.str}>"{PROFILE.name}"</span>
+      </div>
+      <div className="pl-8">
+        <span className={c.primary}>self</span>
+        <span className={c.punct}>.</span>
+        <span className={c.key}>role</span> <span className={c.punct}>=</span>{" "}
+        <span className={c.str}>"{PROFILE.role}"</span>
+      </div>
+      <div className="pl-8">
+        <span className={c.primary}>self</span>
+        <span className={c.punct}>.</span>
+        <span className={c.key}>stack</span> <span className={c.punct}>=</span>{" "}
+        <span className={c.punct}>[</span>
+        <span className={c.str}>"PyTorch"</span>
+        <span className={c.punct}>,</span> <span className={c.str}>"FastAPI"</span>
+        <span className={c.punct}>,</span> <span className={c.str}>"React"</span>
+        <span className={c.punct}>,</span> <span className={c.str}>"AWS"</span>
+        <span className={c.punct}>]</span>
+      </div>
+      <div className="pl-8">
+        <span className={c.primary}>self</span>
+        <span className={c.punct}>.</span>
+        <span className={c.key}>focus</span> <span className={c.punct}>=</span>{" "}
+        <span className={c.punct}>(</span>
+        <span className={c.str}>"backend"</span>
+        <span className={c.punct}>,</span> <span className={c.str}>"ml"</span>
+        <span className={c.punct}>,</span> <span className={c.str}>"systems"</span>
+        <span className={c.punct}>)</span>
+      </div>
       <div>&nbsp;</div>
-      <div className="pl-4"><span className={c.kw}>def</span> <span className={c.fn}>ship</span><span className={c.punct}>(</span><span className={c.primary}>self</span><span className={c.punct}>,</span> <span className={c.key}>idea</span><span className={c.punct}>:</span> <span className={c.fn}>str</span><span className={c.punct}>) -&gt;</span> <span className={c.fn}>Product</span><span className={c.punct}>:</span></div>
-      <div className="pl-8"><span className={c.comment}># builds fast, benchmarks harder</span></div>
-      <div className="pl-8"><span className={c.kw}>return</span> <span className={c.fn}>Product</span><span className={c.punct}>(</span><span className={c.key}>working</span><span className={c.punct}>=</span><span className={c.kw}>True</span><span className={c.punct}>,</span> <span className={c.key}>documented</span><span className={c.punct}>=</span><span className={c.kw}>True</span><span className={c.punct}>)</span></div>
+      <div className="pl-4">
+        <span className={c.kw}>def</span> <span className={c.fn}>ship</span>
+        <span className={c.punct}>(</span>
+        <span className={c.primary}>self</span>
+        <span className={c.punct}>,</span> <span className={c.key}>idea</span>
+        <span className={c.punct}>:</span> <span className={c.fn}>str</span>
+        <span className={c.punct}>) -&gt;</span> <span className={c.fn}>Product</span>
+        <span className={c.punct}>:</span>
+      </div>
+      <div className="pl-8">
+        <span className={c.comment}># builds fast, benchmarks harder</span>
+      </div>
+      <div className="pl-8">
+        <span className={c.kw}>return</span> <span className={c.fn}>Product</span>
+        <span className={c.punct}>(</span>
+        <span className={c.key}>working</span>
+        <span className={c.punct}>=</span>
+        <span className={c.kw}>True</span>
+        <span className={c.punct}>,</span> <span className={c.key}>documented</span>
+        <span className={c.punct}>=</span>
+        <span className={c.kw}>True</span>
+        <span className={c.punct}>)</span>
+      </div>
       <div>&nbsp;</div>
-      <div className="pl-4"><span className={c.kw}>def</span> <span className={c.fn}>status</span><span className={c.punct}>(</span><span className={c.primary}>self</span><span className={c.punct}>):</span></div>
-      <div className="pl-8"><span className={c.kw}>return</span> <span className={c.str}>"{PROFILE.status}"</span></div>
+      <div className="pl-4">
+        <span className={c.kw}>def</span> <span className={c.fn}>status</span>
+        <span className={c.punct}>(</span>
+        <span className={c.primary}>self</span>
+        <span className={c.punct}>):</span>
+      </div>
+      <div className="pl-8">
+        <span className={c.kw}>return</span> <span className={c.str}>"{PROFILE.status}"</span>
+      </div>
       <div>&nbsp;</div>
-      <div><span className={c.primary}>umar</span> <span className={c.punct}>=</span> <span className={c.fn}>Umar</span><span className={c.punct}>()</span></div>
-      <div><span className={c.fn}>print</span><span className={c.punct}>(</span><span className={c.primary}>umar</span><span className={c.punct}>.</span><span className={c.fn}>status</span><span className={c.punct}>())</span></div>
+      <div>
+        <span className={c.primary}>umar</span> <span className={c.punct}>=</span>{" "}
+        <span className={c.fn}>Umar</span>
+        <span className={c.punct}>()</span>
+      </div>
+      <div>
+        <span className={c.fn}>print</span>
+        <span className={c.punct}>(</span>
+        <span className={c.primary}>umar</span>
+        <span className={c.punct}>.</span>
+        <span className={c.fn}>status</span>
+        <span className={c.punct}>())</span>
+      </div>
       <div className={c.muted}>&gt;&gt;&gt; {PROFILE.status}</div>
     </div>
   );
@@ -195,8 +380,8 @@ type HistItem = { type: "input" | "output"; node: React.ReactNode };
 const FILES: Record<string, React.ReactNode> = {
   "about.txt": (
     <div>
-      {PROFILE.name} — {PROFILE.role}.{" "}
-      {PROFILE.degree} @ {PROFILE.college}, CGPA {PROFILE.cgpa} ({PROFILE.grad}).
+      {PROFILE.name} — {PROFILE.role}. {PROFILE.degree} @ {PROFILE.college}, CGPA {PROFILE.cgpa} (
+      {PROFILE.grad}).
     </div>
   ),
   "skills.txt": (
@@ -283,11 +468,22 @@ function ProjectsOutput() {
 function ContactOutput() {
   return (
     <div className="space-y-0.5">
-      <div><span className={c.primary}>email</span>   <span className={c.muted}>{PROFILE.email}</span></div>
-      <div><span className={c.primary}>phone</span>   <span className={c.muted}>{PROFILE.phone}</span></div>
-      <div><span className={c.primary}>github</span>  <span className={c.muted}>{PROFILE.github}</span></div>
-      <div><span className={c.primary}>linkedin</span><span className={c.muted}> {PROFILE.linkedin}</span></div>
-      <div><span className={c.primary}>site</span>    <span className={c.muted}>{PROFILE.site}</span></div>
+      <div>
+        <span className={c.primary}>email</span> <span className={c.muted}>{PROFILE.email}</span>
+      </div>
+      <div>
+        <span className={c.primary}>phone</span> <span className={c.muted}>{PROFILE.phone}</span>
+      </div>
+      <div>
+        <span className={c.primary}>github</span> <span className={c.muted}>{PROFILE.github}</span>
+      </div>
+      <div>
+        <span className={c.primary}>linkedin</span>
+        <span className={c.muted}> {PROFILE.linkedin}</span>
+      </div>
+      <div>
+        <span className={c.primary}>site</span> <span className={c.muted}>{PROFILE.site}</span>
+      </div>
     </div>
   );
 }
@@ -325,7 +521,9 @@ function EasterEggOutput() {
   }, []);
 
   return (
-    <div className={`text-lg font-bold tracking-wide ${done ? "th-love-text" : "text-destructive"}`}>
+    <div
+      className={`text-lg font-bold tracking-wide ${done ? "th-love-text" : "text-destructive"}`}
+    >
       {text}
       {done && " ❤️"}
     </div>
@@ -345,11 +543,7 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const typingTimer = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const boot = [
-    `whoami`,
-    PROFILE.name,
-    `echo "type 'help' to explore"`,
-  ];
+  const boot = [`whoami`, PROFILE.name, `echo "type 'help' to explore"`];
 
   useEffect(() => {
     if (bootLine >= boot.length) {
@@ -412,7 +606,9 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
         push(
           <div>
             {PROFILE.degree} — <span className={c.primary}>{PROFILE.college}</span>
-            <div className={c.muted}>CGPA {PROFILE.cgpa} · {PROFILE.grad}</div>
+            <div className={c.muted}>
+              CGPA {PROFILE.cgpa} · {PROFILE.grad}
+            </div>
           </div>
         );
         break;
@@ -420,10 +616,15 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
         push(
           <div>
             <span className={c.primary}>{LEADERSHIP.role}</span>
-            <span className={c.muted}> @ {LEADERSHIP.org} ({LEADERSHIP.time})</span>
+            <span className={c.muted}>
+              {" "}
+              @ {LEADERSHIP.org} ({LEADERSHIP.time})
+            </span>
             <ul className="mt-0.5">
               {LEADERSHIP.bullets.map((b) => (
-                <li key={b} className={c.muted}><span className={c.primary}>·</span> {b}</li>
+                <li key={b} className={c.muted}>
+                  <span className={c.primary}>·</span> {b}
+                </li>
               ))}
             </ul>
           </div>
@@ -437,11 +638,18 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
         window.open("/resume.pdf", "_blank");
         break;
       case "ls":
-        push(<span className={c.primary}>about.txt  skills.txt  experience/  projects/  contact.md</span>);
+        push(
+          <span className={c.primary}>about.txt skills.txt experience/ projects/ contact.md</span>
+        );
         break;
       case "cat":
         if (FILES[arg]) push(FILES[arg]);
-        else push(<span className="text-destructive">cat: {arg || "(missing operand)"}: No such file</span>);
+        else
+          push(
+            <span className="text-destructive">
+              cat: {arg || "(missing operand)"}: No such file
+            </span>
+          );
         break;
       case "echo":
         push(<span>{arg}</span>);
@@ -526,7 +734,7 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
 
   return (
     <div
-      className="space-y-1.5 min-h-[260px] max-h-[420px] overflow-y-auto cursor-text"
+      className="max-h-[420px] min-h-[260px] cursor-text space-y-1.5 overflow-y-auto"
       onClick={() => inputRef.current?.focus()}
     >
       {!booted ? (
@@ -555,11 +763,13 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
                 <span className={c.fg}>{h.node}</span>
               </div>
             ) : (
-              <div key={i} className="pl-0">{h.node}</div>
+              <div key={i} className="pl-0">
+                {h.node}
+              </div>
             )
           )}
           {!animating && (
-            <div className="flex flex-wrap gap-1.5 pt-1 pb-0.5">
+            <div className="flex flex-wrap gap-1.5 pb-0.5 pt-1">
               {SUGGESTIONS.map((s) => (
                 <button
                   key={s}
@@ -568,7 +778,7 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
                     e.stopPropagation();
                     typeAndRun(s);
                   }}
-                  className="text-[11px] leading-none px-2 py-1 rounded border border-border text-muted-foreground hover:text-foreground hover:border-primary/60 transition-colors"
+                  className="rounded border border-border px-2 py-1 text-[11px] leading-none text-muted-foreground transition-colors hover:border-primary/60 hover:text-foreground"
                 >
                   {s}
                 </button>
@@ -576,14 +786,14 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
             </div>
           )}
 
-          <div className="flex items-center relative">
-            <span className="text-muted-foreground shrink-0">umar@portfolio</span>
+          <div className="relative flex items-center">
+            <span className="shrink-0 text-muted-foreground">umar@portfolio</span>
             <span className={`${c.muted} shrink-0`}>:~$&nbsp;</span>
 
             {/* Visible line: reflects exactly what's in the input, cursor sits right after it */}
             <span className="relative inline-flex items-center whitespace-pre">
               <span className={c.fg}>{input}</span>
-              <span className="inline-block w-[7px] h-[15px] bg-primary/90 animate-blink ml-[1px] align-middle" />
+              <span className="ml-[1px] inline-block h-[15px] w-[7px] animate-blink bg-primary/90 align-middle" />
             </span>
 
             {/* Invisible input capturing all keystrokes, overlaid on the full row */}
@@ -599,7 +809,7 @@ function ZshView({ onEasterEgg }: { onEasterEgg?: () => void }) {
               autoCorrect="off"
               autoCapitalize="off"
               aria-label="terminal input"
-              className="absolute inset-0 w-full h-full opacity-0 cursor-text"
+              className="absolute inset-0 h-full w-full cursor-text opacity-0"
             />
           </div>
           <div ref={bottomRef} />
@@ -640,7 +850,7 @@ export function TerminalHero() {
 
   return (
     <div
-      className={`bg-card/90 backdrop-blur-sm rounded-lg border border-border shadow-2xl overflow-hidden font-mono text-sm ${
+      className={`overflow-hidden rounded-lg border border-border bg-card/90 font-mono text-sm shadow-2xl backdrop-blur-sm ${
         egg ? "th-egg" : ""
       }`}
     >
@@ -683,11 +893,11 @@ export function TerminalHero() {
       `}</style>
 
       {/* Title bar */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
-        <div className="w-3 h-3 rounded-full bg-destructive/70" />
-        <div className="w-3 h-3 rounded-full bg-muted-foreground/60" />
-        <div className="w-3 h-3 rounded-full bg-primary/80" />
-        <span className="text-muted-foreground text-xs ml-3">umar-portfolio</span>
+      <div className="flex items-center gap-2 border-b border-border px-4 py-3">
+        <div className="h-3 w-3 rounded-full bg-destructive/70" />
+        <div className="h-3 w-3 rounded-full bg-muted-foreground/60" />
+        <div className="h-3 w-3 rounded-full bg-primary/80" />
+        <span className="ml-3 text-xs text-muted-foreground">umar-portfolio</span>
       </div>
 
       {/* Tab bar */}
@@ -696,20 +906,20 @@ export function TerminalHero() {
           <button
             key={id}
             onClick={() => setTab(id)}
-            className={`flex items-center gap-2 px-3 py-2 text-xs border-b-2 transition-colors ${
+            className={`flex items-center gap-2 border-b-2 px-3 py-2 text-xs transition-colors ${
               tab === id
-                ? "border-primary text-foreground bg-card"
+                ? "border-primary bg-card text-foreground"
                 : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
-            <Icon className={`w-3.5 h-3.5 ${iconClass}`} />
+            <Icon className={`h-3.5 w-3.5 ${iconClass}`} />
             {label}
           </button>
         ))}
       </div>
 
       {/* Content */}
-      <div className="p-5 md:p-6 min-h-[300px]">
+      <div className="min-h-[300px] p-5 md:p-6">
         {tab === "bio" && <BioJsonView />}
         {tab === "agent" && <AgentPyView />}
         {tab === "zsh" && <ZshView onEasterEgg={triggerEgg} />}

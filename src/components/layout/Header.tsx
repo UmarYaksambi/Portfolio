@@ -2,12 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetClose,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -23,25 +18,23 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
         <Link
           to="/"
-          className="font-mono text-sm font-medium text-primary hover:opacity-80 transition-opacity"
+          className="font-mono text-sm font-medium text-primary transition-opacity hover:opacity-80"
         >
           {"umar@portfolio:~$"}
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               to={item.href}
               className={cn(
-                "font-mono text-sm transition-colors hover:text-primary link-underline",
-                location.pathname === item.href
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                "link-underline font-mono text-sm transition-colors hover:text-primary",
+                location.pathname === item.href ? "text-primary" : "text-muted-foreground"
               )}
             >
               {item.label}
@@ -53,7 +46,7 @@ export function Header() {
             rel="noreferrer"
             aria-label="Open resume"
             title="Resume"
-            className="inline-flex items-center justify-center h-9 w-9 rounded-md border border-primary/40 bg-primary/10 text-primary hover:bg-primary/20 hover:border-primary transition-all hover:scale-105 hover:shadow-[0_0_16px_hsl(var(--primary)/0.4)]"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-primary/40 bg-primary/10 text-primary transition-all hover:scale-105 hover:border-primary hover:bg-primary/20 hover:shadow-[0_0_16px_hsl(var(--primary)/0.4)]"
           >
             <FileText className="h-4 w-4" />
           </a>
@@ -65,7 +58,7 @@ export function Header() {
             target="_blank"
             rel="noreferrer"
             aria-label="Open resume"
-            className="inline-flex items-center justify-center h-9 w-9 rounded-md border border-primary/40 bg-primary/10 text-primary"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-primary/40 bg-primary/10 text-primary"
           >
             <FileText className="h-4 w-4" />
           </a>
@@ -76,24 +69,20 @@ export function Header() {
                 <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-72 bg-background border-border">
-              <div className="flex flex-col gap-6 mt-8">
-                <div className="font-mono text-sm text-primary mb-4">
-                  {"// Navigation"}
-                </div>
+            <SheetContent side="right" className="w-72 border-border bg-background">
+              <div className="mt-8 flex flex-col gap-6">
+                <div className="mb-4 font-mono text-sm text-primary">{"// Navigation"}</div>
                 {navItems.map((item) => (
                   <SheetClose asChild key={item.href}>
                     <Link
                       to={item.href}
                       className={cn(
-                        "font-mono text-lg transition-colors hover:text-primary py-2",
-                        location.pathname === item.href
-                          ? "text-primary"
-                          : "text-muted-foreground"
+                        "py-2 font-mono text-lg transition-colors hover:text-primary",
+                        location.pathname === item.href ? "text-primary" : "text-muted-foreground"
                       )}
                       onClick={() => setIsOpen(false)}
                     >
-                      <span className="text-primary mr-2">→</span>
+                      <span className="mr-2 text-primary">→</span>
                       {item.label}
                     </Link>
                   </SheetClose>

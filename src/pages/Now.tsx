@@ -89,14 +89,14 @@ function SpotifyNowPlaying() {
   // to the static line so the page never looks broken.
   if (!data || data.configured === false) {
     return (
-      <p className="text-muted-foreground leading-relaxed">
+      <p className="leading-relaxed text-muted-foreground">
         Whatever survives three consecutive "skip" presses at 1AM.
       </p>
     );
   }
 
   if (!data.title) {
-    return <p className="text-muted-foreground leading-relaxed">Nothing on deck right now.</p>;
+    return <p className="leading-relaxed text-muted-foreground">Nothing on deck right now.</p>;
   }
 
   return (
@@ -104,33 +104,33 @@ function SpotifyNowPlaying() {
       href={data.songUrl ?? undefined}
       target="_blank"
       rel="noreferrer"
-      className="group flex items-center gap-3 p-3 -m-3 rounded-lg hover:bg-card/60 transition-colors"
+      className="group -m-3 flex items-center gap-3 rounded-lg p-3 transition-colors hover:bg-card/60"
     >
       {data.albumArt ? (
         <img
           src={data.albumArt}
           alt={data.title}
-          className="w-12 h-12 rounded-md border border-border object-cover shrink-0"
+          className="h-12 w-12 shrink-0 rounded-md border border-border object-cover"
         />
       ) : (
-        <div className="w-12 h-12 rounded-md border border-border bg-secondary/50 flex items-center justify-center shrink-0">
-          <Music2 className="w-4 h-4 text-muted-foreground" />
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-md border border-border bg-secondary/50">
+          <Music2 className="h-4 w-4 text-muted-foreground" />
         </div>
       )}
       <div className="min-w-0">
         <div className="flex items-center gap-2">
           {data.isPlaying && (
-            <span className="flex items-end gap-0.5 h-3 shrink-0">
-              <span className="w-0.5 bg-primary now-eq-1" />
-              <span className="w-0.5 bg-primary now-eq-2" />
-              <span className="w-0.5 bg-primary now-eq-3" />
+            <span className="flex h-3 shrink-0 items-end gap-0.5">
+              <span className="now-eq-1 w-0.5 bg-primary" />
+              <span className="now-eq-2 w-0.5 bg-primary" />
+              <span className="now-eq-3 w-0.5 bg-primary" />
             </span>
           )}
-          <span className="text-foreground font-medium truncate group-hover:text-primary transition-colors">
+          <span className="truncate font-medium text-foreground transition-colors group-hover:text-primary">
             {data.title}
           </span>
         </div>
-        <p className="text-xs text-muted-foreground truncate mt-0.5">
+        <p className="mt-0.5 truncate text-xs text-muted-foreground">
           {data.isPlaying ? "Playing now" : "Last played"}
           {data.artist ? ` — ${data.artist}` : ""}
         </p>
@@ -142,7 +142,7 @@ function SpotifyNowPlaying() {
 export default function Now() {
   return (
     <Layout>
-      <section className="py-20 min-h-[70vh]">
+      <section className="min-h-[70vh] py-20">
         <div className="container max-w-2xl">
           <style>{`
             @keyframes now-eq-bounce-1 { 0%, 100% { height: 4px; } 50% { height: 12px; } }
@@ -153,12 +153,12 @@ export default function Now() {
             .now-eq-3 { animation: now-eq-bounce-3 0.9s ease-in-out infinite 0.3s; }
           `}</style>
 
-          <div className="opacity-0 animate-fade-in-up">
+          <div className="animate-fade-in-up opacity-0">
             <CodeLabel className="mb-4">/now</CodeLabel>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+            <h1 className="mb-2 text-3xl font-bold text-foreground md:text-4xl">
               What I'm doing right now.
             </h1>
-            <p className="font-mono text-xs text-muted-foreground mb-10">
+            <p className="mb-10 font-mono text-xs text-muted-foreground">
               Last updated: {LAST_UPDATED} —{" "}
               <a
                 href="https://nownownow.com/about"
@@ -175,23 +175,23 @@ export default function Now() {
             {SECTIONS.map((s, i) => (
               <div
                 key={s.label}
-                className="opacity-0 animate-fade-in-up"
+                className="animate-fade-in-up opacity-0"
                 style={{ animationDelay: `${0.08 + i * 0.08}s` }}
               >
-                <div className="flex items-center gap-2 mb-3">
-                  <s.icon className="w-4 h-4 text-primary" />
-                  <h2 className="font-mono text-sm font-semibold text-primary uppercase tracking-wide">
+                <div className="mb-3 flex items-center gap-2">
+                  <s.icon className="h-4 w-4 text-primary" />
+                  <h2 className="font-mono text-sm font-semibold uppercase tracking-wide text-primary">
                     {s.label}
                   </h2>
                 </div>
-                <ul className="space-y-2 pl-6 border-l border-border">
+                <ul className="space-y-2 border-l border-border pl-6">
                   {s.label === "On repeat" ? (
-                    <li className="pl-2 -ml-px">
+                    <li className="-ml-px pl-2">
                       <SpotifyNowPlaying />
                     </li>
                   ) : (
                     s.items.map((item) => (
-                      <li key={item} className="text-muted-foreground leading-relaxed pl-2 -ml-px">
+                      <li key={item} className="-ml-px pl-2 leading-relaxed text-muted-foreground">
                         {item}
                       </li>
                     ))
@@ -201,7 +201,7 @@ export default function Now() {
             ))}
           </div>
 
-          <p className="mt-14 text-xs text-muted-foreground font-mono opacity-0 animate-fade-in-up stagger-4">
+          <p className="stagger-4 mt-14 animate-fade-in-up font-mono text-xs text-muted-foreground opacity-0">
             {"// this page changes more often than my resume does."}
           </p>
         </div>

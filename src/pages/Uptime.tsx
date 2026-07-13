@@ -64,7 +64,7 @@ function Sparkline({ seed, colorClass }: { seed: number; colorClass: string }) {
   }, [seed]);
 
   return (
-    <svg viewBox="0 0 220 40" className="w-full h-10">
+    <svg viewBox="0 0 220 40" className="h-10 w-full">
       <polyline
         points={points}
         fill="none"
@@ -81,10 +81,7 @@ function Sparkline({ seed, colorClass }: { seed: number; colorClass: string }) {
 /* ---------------- Data ---------------- */
 type Status = "operational" | "degraded" | "outage";
 
-const STATUS_META: Record<
-  Status,
-  { label: string; color: string; icon: typeof CheckCircle2 }
-> = {
+const STATUS_META: Record<Status, { label: string; color: string; icon: typeof CheckCircle2 }> = {
   operational: { label: "Operational", color: "text-primary", icon: CheckCircle2 },
   degraded: { label: "Degraded Performance", color: "text-yellow-500", icon: AlertTriangle },
   outage: { label: "Partial Outage", color: "text-destructive", icon: XCircle },
@@ -151,26 +148,26 @@ export default function Uptime() {
 
   return (
     <Layout>
-      <section className="py-16 border-b border-border">
+      <section className="border-b border-border py-16">
         <div className="container">
-          <div className="opacity-0 animate-fade-in-up">
+          <div className="animate-fade-in-up opacity-0">
             <CodeLabel className="mb-4">status.umar.dev</CodeLabel>
-            <div className="flex flex-wrap items-center gap-3 mb-2">
+            <div className="mb-2 flex flex-wrap items-center gap-3">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-primary" />
               </span>
-              <h1 className="text-2xl md:text-4xl font-bold text-foreground">
+              <h1 className="text-2xl font-bold text-foreground md:text-4xl">
                 {overallOperational ? "All Systems Operational*" : "Partial System Outage"}
               </h1>
             </div>
-            <p className="text-xs text-muted-foreground font-mono ml-6">
+            <p className="ml-6 font-mono text-xs text-muted-foreground">
               *terms and conditions (sleep schedule) may vary
             </p>
           </div>
 
           {/* Live uptime counter */}
-          <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3 opacity-0 animate-fade-in-up stagger-1">
+          <div className="stagger-1 mt-10 grid animate-fade-in-up grid-cols-2 gap-3 opacity-0 sm:grid-cols-4">
             {[
               { v: years, l: "years" },
               { v: days, l: "days" },
@@ -180,45 +177,47 @@ export default function Uptime() {
             ].map((u, i) => (
               <div
                 key={u.l}
-                className={`p-4 rounded-lg border border-border bg-card/60 text-center ${
+                className={`rounded-lg border border-border bg-card/60 p-4 text-center ${
                   i === 4 ? "col-span-2 sm:col-span-1" : ""
                 }`}
               >
-                <div className="font-mono text-2xl md:text-3xl font-bold text-primary tabular-nums">
+                <div className="font-mono text-2xl font-bold tabular-nums text-primary md:text-3xl">
                   {u.v}
                 </div>
-                <div className="text-xs text-muted-foreground font-mono mt-1">{u.l}</div>
+                <div className="mt-1 font-mono text-xs text-muted-foreground">{u.l}</div>
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground font-mono mt-3 opacity-0 animate-fade-in-up stagger-2">
+          <p className="stagger-2 mt-3 animate-fade-in-up font-mono text-xs text-muted-foreground opacity-0">
             {"// up since Nov 22, 2004 — 0 planned downtime, several unplanned naps"}
           </p>
         </div>
       </section>
 
       {/* Uptime % + subscribe */}
-      <section className="py-14 border-b border-border">
+      <section className="border-b border-border py-14">
         <div className="container grid gap-6 md:grid-cols-3">
-          <div className="p-6 rounded-lg border border-border bg-card/60 opacity-0 animate-fade-in-up">
+          <div className="animate-fade-in-up rounded-lg border border-border bg-card/60 p-6 opacity-0">
             <div className="font-mono text-3xl font-bold text-primary">99.97%</div>
-            <div className="text-sm text-muted-foreground mt-1">Uptime (last 90 days)</div>
+            <div className="mt-1 text-sm text-muted-foreground">Uptime (last 90 days)</div>
           </div>
-          <div className="p-6 rounded-lg border border-border bg-card/60 opacity-0 animate-fade-in-up stagger-1">
+          <div className="stagger-1 animate-fade-in-up rounded-lg border border-border bg-card/60 p-6 opacity-0">
             <div className="font-mono text-3xl font-bold text-primary">142ms</div>
-            <div className="text-sm text-muted-foreground mt-1">Avg. response time (coffee-adjusted)</div>
+            <div className="mt-1 text-sm text-muted-foreground">
+              Avg. response time (coffee-adjusted)
+            </div>
           </div>
-          <div className="p-6 rounded-lg border border-border bg-card/60 flex flex-col justify-between opacity-0 animate-fade-in-up stagger-2">
+          <div className="stagger-2 flex animate-fade-in-up flex-col justify-between rounded-lg border border-border bg-card/60 p-6 opacity-0">
             <div>
-              <div className="flex items-center gap-2 text-sm font-medium text-foreground mb-1">
-                <Bell className="w-4 h-4 text-primary" /> Subscribe to updates
+              <div className="mb-1 flex items-center gap-2 text-sm font-medium text-foreground">
+                <Bell className="h-4 w-4 text-primary" /> Subscribe to updates
               </div>
-              <p className="text-xs text-muted-foreground mb-3">
+              <p className="mb-3 text-xs text-muted-foreground">
                 Get notified when something breaks. It will.
               </p>
             </div>
             {subscribed ? (
-              <p className="text-xs font-mono text-primary">
+              <p className="font-mono text-xs text-primary">
                 ✓ subscribed (jk, this button doesn't do anything)
               </p>
             ) : (
@@ -235,9 +234,9 @@ export default function Uptime() {
                   placeholder="you@example.com"
                   value={email}
                   onChange={(ev) => setEmail(ev.target.value)}
-                  className="flex-1 min-w-0 px-3 py-2 rounded-md border border-border bg-background text-xs font-mono text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/60"
+                  className="min-w-0 flex-1 rounded-md border border-border bg-background px-3 py-2 font-mono text-xs text-foreground placeholder:text-muted-foreground focus:border-primary/60 focus:outline-none"
                 />
-                <Button type="submit" size="sm" className="font-mono shrink-0">
+                <Button type="submit" size="sm" className="shrink-0 font-mono">
                   Subscribe
                 </Button>
               </form>
@@ -249,7 +248,7 @@ export default function Uptime() {
       {/* Components / services */}
       <section className="py-20">
         <div className="container">
-          <div className="opacity-0 animate-fade-in-up">
+          <div className="animate-fade-in-up opacity-0">
             <CodeDivider label="Component Status" />
           </div>
           <div className="grid gap-4 md:grid-cols-2">
@@ -258,16 +257,16 @@ export default function Uptime() {
               return (
                 <div
                   key={s.name}
-                  className="p-5 rounded-lg border border-border bg-card/60 hover:border-primary/40 transition-all opacity-0 animate-fade-in-up"
+                  className="animate-fade-in-up rounded-lg border border-border bg-card/60 p-5 opacity-0 transition-all hover:border-primary/40"
                   style={{ animationDelay: `${0.05 + i * 0.06}s` }}
                 >
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="mb-3 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <s.icon className="w-4 h-4 text-primary" />
+                      <s.icon className="h-4 w-4 text-primary" />
                       <span className="text-sm font-medium text-foreground">{s.name}</span>
                     </div>
-                    <span className={`flex items-center gap-1 text-xs font-mono ${meta.color}`}>
-                      <meta.icon className="w-3.5 h-3.5" />
+                    <span className={`flex items-center gap-1 font-mono text-xs ${meta.color}`}>
+                      <meta.icon className="h-3.5 w-3.5" />
                       {meta.label}
                     </span>
                   </div>
@@ -280,22 +279,22 @@ export default function Uptime() {
       </section>
 
       {/* Incident history / postmortems */}
-      <section className="py-20 border-t border-border">
+      <section className="border-t border-border py-20">
         <div className="container max-w-3xl">
-          <div className="opacity-0 animate-fade-in-up">
+          <div className="animate-fade-in-up opacity-0">
             <CodeDivider label="Incident History" />
           </div>
           <div className="space-y-4">
             {INCIDENTS.map((inc, i) => (
               <div
                 key={inc.title}
-                className="rounded-lg border border-border bg-card/60 overflow-hidden opacity-0 animate-fade-in-up"
+                className="animate-fade-in-up overflow-hidden rounded-lg border border-border bg-card/60 opacity-0"
                 style={{ animationDelay: `${0.05 + i * 0.08}s` }}
               >
-                <div className="flex flex-wrap items-center justify-between gap-2 px-5 py-3 border-b border-border bg-secondary/30">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border bg-secondary/30 px-5 py-3">
                   <span className="font-mono text-xs text-muted-foreground">{inc.date}</span>
                   <span
-                    className={`text-xs font-mono px-2 py-0.5 rounded-full border ${
+                    className={`rounded-full border px-2 py-0.5 font-mono text-xs ${
                       SEVERITY_COLOR[inc.severity]
                     }`}
                   >
@@ -303,8 +302,8 @@ export default function Uptime() {
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-semibold text-foreground mb-2">{inc.title}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <h3 className="mb-2 font-semibold text-foreground">{inc.title}</h3>
+                  <p className="mb-2 text-sm text-muted-foreground">
                     <span className="font-mono text-xs text-primary">root cause — </span>
                     {inc.root_cause}
                   </p>

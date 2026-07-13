@@ -31,7 +31,7 @@ interface Obstacle {
 const OBSTACLE_LABELS: Record<ObstacleKind, string[]> = {
   bug: ["🐛"],
   log: ["500", "404", "NaN", "null"],
-  tag: ["</>", "{ }", ";;", "===" ],
+  tag: ["</>", "{ }", ";;", "==="],
 };
 
 function randRange(a: number, b: number) {
@@ -260,9 +260,9 @@ export default function NotFound() {
     <Layout>
       <section className="py-16 md:py-24">
         <div className="container max-w-3xl">
-          <div className="opacity-0 animate-fade-in-up text-center mb-8">
-            <p className="font-mono text-xs text-primary mb-3">{"// 404 — route not found"}</p>
-            <h1 className="text-3xl md:text-5xl font-bold text-foreground mb-3">
+          <div className="mb-8 animate-fade-in-up text-center opacity-0">
+            <p className="mb-3 font-mono text-xs text-primary">{"// 404 — route not found"}</p>
+            <h1 className="mb-3 text-3xl font-bold text-foreground md:text-5xl">
               This page doesn't exist. <br className="hidden md:block" />
               But this game does.
             </h1>
@@ -274,33 +274,33 @@ export default function NotFound() {
             </p>
           </div>
 
-          <div className="opacity-0 animate-fade-in-up stagger-1">
-            <div className="flex items-center justify-between mb-2 px-1">
+          <div className="stagger-1 animate-fade-in-up opacity-0">
+            <div className="mb-2 flex items-center justify-between px-1">
               <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
-                <Zap className="w-3.5 h-3.5 text-primary" />
-                score: <span className="text-foreground tabular-nums">{uiScore}</span>
+                <Zap className="h-3.5 w-3.5 text-primary" />
+                score: <span className="tabular-nums text-foreground">{uiScore}</span>
               </span>
               <span className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
-                <Trophy className="w-3.5 h-3.5 text-primary" />
-                best: <span className="text-foreground tabular-nums">{uiHigh}</span>
+                <Trophy className="h-3.5 w-3.5 text-primary" />
+                best: <span className="tabular-nums text-foreground">{uiHigh}</span>
               </span>
             </div>
 
             <div
-              className="relative rounded-lg border border-border bg-card/60 overflow-hidden cursor-pointer select-none"
+              className="relative cursor-pointer select-none overflow-hidden rounded-lg border border-border bg-card/60"
               onClick={onCanvasTap}
             >
               <canvas
                 ref={canvasRef}
                 width={CANVAS_W}
                 height={CANVAS_H}
-                className="w-full h-auto block"
+                className="block h-auto w-full"
               />
 
               {!uiStarted && (
                 <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm">
-                  <div className="text-center px-6">
-                    <p className="font-mono text-sm text-foreground mb-3">
+                  <div className="px-6 text-center">
+                    <p className="mb-3 font-mono text-sm text-foreground">
                       Press Space, ↑, or tap to start
                     </p>
                     <Button onClick={jump} className="font-mono">
@@ -311,10 +311,10 @@ export default function NotFound() {
               )}
 
               {uiGameOver && (
-                <div className="absolute inset-0 flex items-center justify-center bg-background/85 backdrop-blur-sm animate-fade-in">
-                  <div className="text-center px-6">
-                    <p className="font-mono text-lg text-destructive mb-1">Game over.</p>
-                    <p className="font-mono text-xs text-muted-foreground mb-4">
+                <div className="absolute inset-0 flex animate-fade-in items-center justify-center bg-background/85 backdrop-blur-sm">
+                  <div className="px-6 text-center">
+                    <p className="mb-1 font-mono text-lg text-destructive">Game over.</p>
+                    <p className="mb-4 font-mono text-xs text-muted-foreground">
                       score: {uiScore} {uiScore >= uiHigh && uiScore > 0 ? "— new best 🎉" : ""}
                     </p>
                     <Button onClick={jump} className="font-mono">
@@ -326,7 +326,7 @@ export default function NotFound() {
             </div>
           </div>
 
-          <div className="mt-10 text-center opacity-0 animate-fade-in-up stagger-2">
+          <div className="stagger-2 mt-10 animate-fade-in-up text-center opacity-0">
             <Button asChild variant="outline" className="font-mono">
               <Link to="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />

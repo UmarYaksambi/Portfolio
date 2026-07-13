@@ -11,26 +11,24 @@ export default function Styleguide() {
       <section className="py-20">
         <div className="container">
           {/* Page Header */}
-          <div className="max-w-2xl mb-12">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Styleguide
-            </h1>
-            <p className="text-muted-foreground leading-relaxed">
-              Design system documentation. A reference for colors, typography, 
-              and reusable components that make up this portfolio.
+          <div className="mb-12 max-w-2xl">
+            <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Styleguide</h1>
+            <p className="leading-relaxed text-muted-foreground">
+              Design system documentation. A reference for colors, typography, and reusable
+              components that make up this portfolio.
             </p>
           </div>
 
           {/* Colors */}
           <CodeDivider label="Colors" />
-          <div className="grid gap-4 md:grid-cols-4 mb-16">
+          <div className="mb-16 grid gap-4 md:grid-cols-4">
             <div className="space-y-2">
-              <div className="h-20 rounded-lg bg-background border border-border" />
+              <div className="h-20 rounded-lg border border-border bg-background" />
               <p className="font-mono text-xs text-muted-foreground">--background</p>
               <p className="font-mono text-xs text-foreground">Deep Black</p>
             </div>
             <div className="space-y-2">
-              <div className="h-20 rounded-lg bg-card border border-border" />
+              <div className="h-20 rounded-lg border border-border bg-card" />
               <p className="font-mono text-xs text-muted-foreground">--card</p>
               <p className="font-mono text-xs text-foreground">Graphite</p>
             </div>
@@ -40,7 +38,7 @@ export default function Styleguide() {
               <p className="font-mono text-xs text-foreground">Neon Green</p>
             </div>
             <div className="space-y-2">
-              <div className="h-20 rounded-lg bg-muted border border-border" />
+              <div className="h-20 rounded-lg border border-border bg-muted" />
               <p className="font-mono text-xs text-muted-foreground">--muted</p>
               <p className="font-mono text-xs text-foreground">Subtle Gray</p>
             </div>
@@ -48,7 +46,7 @@ export default function Styleguide() {
 
           {/* Typography */}
           <CodeDivider label="Typography" />
-          <div className="space-y-8 mb-16">
+          <div className="mb-16 space-y-8">
             <div className="space-y-4">
               <p className="font-mono text-xs text-primary">/* Headings - Inter */</p>
               <h1 className="text-4xl font-bold">Heading 1</h1>
@@ -67,9 +65,7 @@ export default function Styleguide() {
             </div>
             <div className="space-y-4">
               <p className="font-mono text-xs text-primary">/* Mono - JetBrains Mono */</p>
-              <p className="font-mono text-base">
-                Monospace text for code and technical details.
-              </p>
+              <p className="font-mono text-base">Monospace text for code and technical details.</p>
               <p className="font-mono text-sm text-muted-foreground">
                 {"// Comments and syntax-style elements"}
               </p>
@@ -78,7 +74,7 @@ export default function Styleguide() {
 
           {/* Buttons */}
           <CodeDivider label="Buttons" />
-          <div className="flex flex-wrap gap-4 mb-16">
+          <div className="mb-16 flex flex-wrap gap-4">
             <Button>Primary Button</Button>
             <Button variant="secondary">Secondary</Button>
             <Button variant="outline">Outline</Button>
@@ -88,7 +84,7 @@ export default function Styleguide() {
 
           {/* Cards */}
           <CodeDivider label="Cards" />
-          <div className="grid gap-4 md:grid-cols-2 mb-16">
+          <div className="mb-16 grid gap-4 md:grid-cols-2">
             <Card>
               <CardHeader>
                 <CardTitle>Card Title</CardTitle>

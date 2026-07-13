@@ -26,7 +26,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <ClickSpark sparkColor="#39ff14" sparkSize={12} sparkRadius={20} sparkCount={10} duration={500}>
+        <ClickSpark
+          sparkColor="#39ff14"
+          sparkSize={12}
+          sparkRadius={20}
+          sparkCount={10}
+          duration={500}
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />

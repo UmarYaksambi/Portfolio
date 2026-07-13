@@ -85,18 +85,18 @@ export default function Contact() {
     <Layout>
       <section className="py-20">
         <div className="container">
-          <div className="max-w-2xl mb-12 opacity-0 animate-fade-in-up">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="mb-12 max-w-2xl animate-fade-in-up opacity-0">
+            <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
               <DecryptedText text="Contact" animateOn="view" sequential speed={60} />
             </h1>
-            <p className="text-muted-foreground leading-relaxed">
-              Building something weird, genuinely useful, or that sounds like a terrible idea
-              at first? I probably want to hear about it.
+            <p className="leading-relaxed text-muted-foreground">
+              Building something weird, genuinely useful, or that sounds like a terrible idea at
+              first? I probably want to hear about it.
             </p>
           </div>
 
           <div className="grid gap-16 lg:grid-cols-2">
-            <div className="opacity-0 animate-fade-in-up stagger-1">
+            <div className="stagger-1 animate-fade-in-up opacity-0">
               <CodeDivider label="Send a Message" />
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Honeypot — invisible to real users, catches bots. Our
@@ -114,27 +114,54 @@ export default function Contact() {
                   <Label htmlFor="name" className="font-mono text-sm">
                     <span className="text-primary">//</span> Name
                   </Label>
-                  <Input id="name" name="name" placeholder="Your name" required className="bg-card border-border font-mono text-sm" />
+                  <Input
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                    className="border-border bg-card font-mono text-sm"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="email" className="font-mono text-sm">
                     <span className="text-primary">//</span> Email
                   </Label>
-                  <Input id="email" name="email" type="email" placeholder="your@email.com" required className="bg-card border-border font-mono text-sm" />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    required
+                    className="border-border bg-card font-mono text-sm"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="message" className="font-mono text-sm">
                     <span className="text-primary">//</span> Message
                   </Label>
-                  <Textarea id="message" name="message" placeholder="Tell me about your project..." rows={6} required className="bg-card border-border font-mono text-sm resize-none" />
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell me about your project..."
+                    rows={6}
+                    required
+                    className="resize-none border-border bg-card font-mono text-sm"
+                  />
                 </div>
                 <Button type="submit" disabled={isSubmitting} className="font-mono">
-                  {isSubmitting ? "Sending..." : (<>Send Message<Send className="ml-2 h-4 w-4" /></>)}
+                  {isSubmitting ? (
+                    "Sending..."
+                  ) : (
+                    <>
+                      Send Message
+                      <Send className="ml-2 h-4 w-4" />
+                    </>
+                  )}
                 </Button>
               </form>
             </div>
 
-            <div className="opacity-0 animate-fade-in-up stagger-2">
+            <div className="stagger-2 animate-fade-in-up opacity-0">
               <CodeDivider label="Connect" />
               <div className="space-y-4">
                 {socialLinks.map((link, i) => (
@@ -143,14 +170,14 @@ export default function Contact() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 bg-card border border-border rounded-lg hover:border-primary/50 hover:-translate-y-0.5 transition-all group opacity-0 animate-fade-in-up"
+                    className="group flex animate-fade-in-up items-center gap-4 rounded-lg border border-border bg-card p-4 opacity-0 transition-all hover:-translate-y-0.5 hover:border-primary/50"
                     style={{ animationDelay: `${0.25 + i * 0.08}s` }}
                   >
-                    <div className="flex items-center justify-center w-12 h-12 bg-secondary rounded-lg group-hover:bg-primary/10 transition-colors">
-                      <link.icon className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-secondary transition-colors group-hover:bg-primary/10">
+                      <link.icon className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-primary" />
                     </div>
                     <div>
-                      <p className="font-mono text-sm text-foreground group-hover:text-primary transition-colors">
+                      <p className="font-mono text-sm text-foreground transition-colors group-hover:text-primary">
                         {link.label}
                       </p>
                       <p className="font-mono text-xs text-muted-foreground">{link.handle}</p>
@@ -159,17 +186,18 @@ export default function Contact() {
                 ))}
               </div>
 
-              <div className="mt-8 p-4 bg-card border border-border rounded-lg space-y-3">
+              <div className="mt-8 space-y-3 rounded-lg border border-border bg-card p-4">
                 <p className="font-mono text-xs text-muted-foreground">
-                  <span className="text-primary">/*</span> Based in <span className="text-primary">*/</span>
+                  <span className="text-primary">/*</span> Based in{" "}
+                  <span className="text-primary">*/</span>
                 </p>
-                <p className="text-sm text-foreground flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-primary" /> Bengaluru, Karnataka, India
+                <p className="flex items-center gap-2 text-sm text-foreground">
+                  <MapPin className="h-4 w-4 text-primary" /> Bengaluru, Karnataka, India
                 </p>
-                <p className="text-sm text-foreground flex items-center gap-2">
-                  <Phone className="w-4 h-4 text-primary" /> +91 99025 78332
+                <p className="flex items-center gap-2 text-sm text-foreground">
+                  <Phone className="h-4 w-4 text-primary" /> +91 99025 78332
                 </p>
-                <p className="font-mono text-xs text-primary pt-2 border-t border-border">
+                <p className="border-t border-border pt-2 font-mono text-xs text-primary">
                   {"//"} Open to internships, research collabs & weird side projects
                 </p>
               </div>

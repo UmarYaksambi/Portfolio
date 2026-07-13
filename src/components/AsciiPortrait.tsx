@@ -69,16 +69,13 @@ export function AsciiPortrait({
   return (
     <div className={`flex justify-center ${className}`}>
       <pre
-        className="font-mono leading-[0.85] select-none whitespace-pre"
+        className="select-none whitespace-pre font-mono leading-[0.85]"
         style={{ fontSize, width: `${columnWidth}ch` }}
       >
         {visibleRows.map((row, y) => (
           <div key={y}>
             {row.split("").map((char, x) => (
-              <span
-                key={x}
-                style={{ color: `hsl(130 100% ${28 + charBrightness(char) * 55}%)` }}
-              >
+              <span key={x} style={{ color: `hsl(130 100% ${28 + charBrightness(char) * 55}%)` }}>
                 {char}
               </span>
             ))}

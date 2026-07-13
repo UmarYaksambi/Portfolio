@@ -12,37 +12,42 @@ interface ProjectCardProps {
   className?: string;
 }
 
-export function ProjectCard({ name, description, stack, impact, slug, className }: ProjectCardProps) {
+export function ProjectCard({
+  name,
+  description,
+  stack,
+  impact,
+  slug,
+  className,
+}: ProjectCardProps) {
   return (
     <Link to={`/work/${slug}`}>
       <article
         className={cn(
-          "group p-6 bg-card border border-border rounded-lg transition-all hover:border-primary/50 hover:bg-card/80 cursor-pointer",
+          "group cursor-pointer rounded-lg border border-border bg-card p-6 transition-all hover:border-primary/50 hover:bg-card/80",
           className
         )}
       >
         {/* Project Name */}
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="font-mono text-lg font-medium text-foreground group-hover:text-primary transition-colors">
+        <div className="mb-2 flex items-center justify-between">
+          <h3 className="font-mono text-lg font-medium text-foreground transition-colors group-hover:text-primary">
             {name}
           </h3>
-          <ArrowRight className="h-4 w-4 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+          <ArrowRight className="h-4 w-4 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-primary" />
         </div>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-          {description}
-        </p>
+        <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{description}</p>
 
         {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="mb-4 flex flex-wrap gap-2">
           {stack.map((tech) => (
             <TechTag key={tech}>{tech}</TechTag>
           ))}
         </div>
 
         {/* Impact */}
-        <div className="pt-4 border-t border-border">
+        <div className="border-t border-border pt-4">
           <span className="font-mono text-xs text-primary">
             <span className="text-muted-foreground">{"//"}</span> {impact}
           </span>

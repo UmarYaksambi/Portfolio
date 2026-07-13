@@ -17,13 +17,10 @@ const SPOTIFY_REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const TOKEN_ENDPOINT = "https://accounts.spotify.com/api/token";
 const NOW_PLAYING_ENDPOINT = "https://api.spotify.com/v1/me/player/currently-playing";
-const RECENTLY_PLAYED_ENDPOINT =
-  "https://api.spotify.com/v1/me/player/recently-played?limit=1";
+const RECENTLY_PLAYED_ENDPOINT = "https://api.spotify.com/v1/me/player/recently-played?limit=1";
 
 async function getAccessToken() {
-  const basic = Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString(
-    "base64"
-  );
+  const basic = Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString("base64");
   const response = await fetch(TOKEN_ENDPOINT, {
     method: "POST",
     headers: {
@@ -49,9 +46,7 @@ function formatTrack(track, isPlaying) {
     artist: (track.artists || []).map((a) => a.name).join(", "),
     album: track.album ? track.album.name : null,
     albumArt:
-      track.album && track.album.images && track.album.images[0]
-        ? track.album.images[0].url
-        : null,
+      track.album && track.album.images && track.album.images[0] ? track.album.images[0].url : null,
     songUrl: track.external_urls ? track.external_urls.spotify : null,
     configured: true,
   };
@@ -85,9 +80,7 @@ export default async function handler(req, res) {
     });
     const recentData = await recentRes.json();
     const track =
-      recentData && recentData.items && recentData.items[0]
-        ? recentData.items[0].track
-        : null;
+      recentData && recentData.items && recentData.items[0] ? recentData.items[0].track : null;
 
     if (track) {
       return res.status(200).json(formatTrack(track, false));

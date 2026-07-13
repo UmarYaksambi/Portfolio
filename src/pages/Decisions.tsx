@@ -112,8 +112,10 @@ const ADRS: ADR[] = [
     status: "Accepted",
     date: "2024-08",
     context: "Are you kidding me. Next.",
-    decision: "Coding Club. Became Vice President. Every other technical club can fight for scraps.",
-    consequences: "Zero regrets. This entry took longer to format than the actual decision took to make.",
+    decision:
+      "Coding Club. Became Vice President. Every other technical club can fight for scraps.",
+    consequences:
+      "Zero regrets. This entry took longer to format than the actual decision took to make.",
   },
   {
     id: "ADR-009",
@@ -133,7 +135,8 @@ const ADRS: ADR[] = [
     status: "Accepted",
     date: "2021-12",
     context: "Oh, so now you want this explained too?",
-    decision: "C++. For everything that mattered — systems work, competitive programming, self-respect.",
+    decision:
+      "C++. For everything that mattered — systems work, competitive programming, self-respect.",
     consequences:
       "Manages its own memory and its own consequences. Never once missed a garbage collector holding my hand. Case, once again, closed.",
   },
@@ -153,7 +156,8 @@ const ADRS: ADR[] = [
     title: "Optimize for internships over a fifth side-project",
     status: "Superseded",
     date: "2024-11",
-    context: "Four half-finished side projects, zero real production scars. The math wasn't mathing.",
+    context:
+      "Four half-finished side projects, zero real production scars. The math wasn't mathing.",
     decision:
       "Paused every personal project for a full year. Went all in on internships — HPE, SpikedAI, Samsung R&D.",
     consequences:
@@ -166,25 +170,25 @@ function ADRCard({ adr, index }: { adr: ADR; index: number }) {
 
   return (
     <div
-      className="rounded-lg border border-border bg-card/60 overflow-hidden opacity-0 animate-fade-in-up"
+      className="animate-fade-in-up overflow-hidden rounded-lg border border-border bg-card/60 opacity-0"
       style={{ animationDelay: `${0.05 + index * 0.07}s` }}
     >
       <button
         onClick={() => setOpen((v) => !v)}
-        className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-secondary/30 transition-colors"
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors hover:bg-secondary/30"
       >
-        <div className="flex items-center gap-3 min-w-0">
-          <span className="font-mono text-xs text-primary shrink-0">{adr.id}</span>
-          <span className="font-medium text-foreground truncate">{adr.title}</span>
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="shrink-0 font-mono text-xs text-primary">{adr.id}</span>
+          <span className="truncate font-medium text-foreground">{adr.title}</span>
         </div>
-        <div className="flex items-center gap-3 shrink-0">
+        <div className="flex shrink-0 items-center gap-3">
           <span
-            className={`text-xs font-mono px-2 py-0.5 rounded-full border ${STATUS_STYLE[adr.status]}`}
+            className={`rounded-full border px-2 py-0.5 font-mono text-xs ${STATUS_STYLE[adr.status]}`}
           >
             {adr.status}
           </span>
           <ChevronDown
-            className={`w-4 h-4 text-muted-foreground transition-transform ${
+            className={`h-4 w-4 text-muted-foreground transition-transform ${
               open ? "rotate-180" : ""
             }`}
           />
@@ -192,19 +196,19 @@ function ADRCard({ adr, index }: { adr: ADR; index: number }) {
       </button>
 
       {open && (
-        <div className="px-5 pb-5 pt-1 space-y-3 border-t border-border">
-          <p className="font-mono text-xs text-muted-foreground mt-3">{adr.date}</p>
+        <div className="space-y-3 border-t border-border px-5 pb-5 pt-1">
+          <p className="mt-3 font-mono text-xs text-muted-foreground">{adr.date}</p>
           <div>
-            <p className="font-mono text-xs text-primary mb-1">Context</p>
-            <p className="text-sm text-muted-foreground leading-relaxed">{adr.context}</p>
+            <p className="mb-1 font-mono text-xs text-primary">Context</p>
+            <p className="text-sm leading-relaxed text-muted-foreground">{adr.context}</p>
           </div>
           <div>
-            <p className="font-mono text-xs text-primary mb-1">Decision</p>
-            <p className="text-sm text-muted-foreground leading-relaxed">{adr.decision}</p>
+            <p className="mb-1 font-mono text-xs text-primary">Decision</p>
+            <p className="text-sm leading-relaxed text-muted-foreground">{adr.decision}</p>
           </div>
           <div>
-            <p className="font-mono text-xs text-primary mb-1">Consequences</p>
-            <p className="text-sm text-muted-foreground leading-relaxed">{adr.consequences}</p>
+            <p className="mb-1 font-mono text-xs text-primary">Consequences</p>
+            <p className="text-sm leading-relaxed text-muted-foreground">{adr.consequences}</p>
           </div>
         </div>
       )}
@@ -217,19 +221,18 @@ export default function Decisions() {
     <Layout>
       <section className="py-20">
         <div className="container max-w-3xl">
-          <div className="opacity-0 animate-fade-in-up">
+          <div className="animate-fade-in-up opacity-0">
             <CodeLabel className="mb-4">/decisions</CodeLabel>
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+            <h1 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
               Architecture Decision Records, for a life.
             </h1>
-            <p className="text-muted-foreground mb-10">
-              The big decisions, documented the way I'd document a system design choice —
-              context, decision, consequences. No regrets section because that's what
-              "Superseded" is for.
+            <p className="mb-10 text-muted-foreground">
+              The big decisions, documented the way I'd document a system design choice — context,
+              decision, consequences. No regrets section because that's what "Superseded" is for.
             </p>
           </div>
 
-          <div className="opacity-0 animate-fade-in-up">
+          <div className="animate-fade-in-up opacity-0">
             <CodeDivider label={`${ADRS.length} records`} />
           </div>
 

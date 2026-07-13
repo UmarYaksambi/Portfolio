@@ -19,7 +19,7 @@ const snippets = [
 
 export function CodeSnippetsBackdrop() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
+    <div className="pointer-events-none absolute inset-0 select-none overflow-hidden">
       {/* animated grid */}
       <div
         className="absolute inset-0 opacity-40"
@@ -38,7 +38,7 @@ export function CodeSnippetsBackdrop() {
       {snippets.map((s, i) => (
         <div
           key={i}
-          className="absolute font-mono text-xs md:text-sm text-primary/15 whitespace-nowrap"
+          className="absolute whitespace-nowrap font-mono text-xs text-primary/15 md:text-sm"
           style={{ top: s.top, left: s.left }}
         >
           {s.code}

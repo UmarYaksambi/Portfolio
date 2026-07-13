@@ -57,7 +57,7 @@ const projectsData: Record<
     ],
     repo: "https://github.com/UmarYaksambi",
   },
-  "medquery": {
+  medquery: {
     name: "MedQuery",
     fullDescription:
       "MedQuery is a full-stack clinical analytics platform. It layers LLMs over the MIMIC-IV dataset so healthcare professionals can ask natural-language questions and get back grounded, auditable analytics — with role-based access and interactive visualisations.",
@@ -168,8 +168,8 @@ export default function ProjectDetail() {
       <Layout>
         <section className="py-20">
           <div className="container text-center">
-            <h1 className="text-3xl font-bold text-foreground mb-4">Project Not Found</h1>
-            <p className="text-muted-foreground mb-8">
+            <h1 className="mb-4 text-3xl font-bold text-foreground">Project Not Found</h1>
+            <p className="mb-8 text-muted-foreground">
               The project you're looking for doesn't exist.
             </p>
             <Button asChild>
@@ -190,62 +190,60 @@ export default function ProjectDetail() {
         <div className="container max-w-4xl">
           <Link
             to="/work"
-            className="inline-flex items-center font-mono text-sm text-muted-foreground hover:text-primary transition-colors mb-8 opacity-0 animate-fade-in-up"
+            className="mb-8 inline-flex animate-fade-in-up items-center font-mono text-sm text-muted-foreground opacity-0 transition-colors hover:text-primary"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Work
           </Link>
 
-          <div className="mb-12 opacity-0 animate-fade-in-up stagger-1">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {project.name}
-            </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+          <div className="stagger-1 mb-12 animate-fade-in-up opacity-0">
+            <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">{project.name}</h1>
+            <p className="mb-6 text-lg leading-relaxed text-muted-foreground">
               {project.fullDescription}
             </p>
 
-            <div className="flex flex-wrap gap-2 mb-6">
+            <div className="mb-6 flex flex-wrap gap-2">
               {project.stack.map((tech) => (
                 <TechTag key={tech}>{tech}</TechTag>
               ))}
             </div>
 
-            <div className="p-4 bg-primary/5 border border-primary/20 rounded-lg">
+            <div className="rounded-lg border border-primary/20 bg-primary/5 p-4">
               <span className="font-mono text-sm text-primary">
                 <span className="text-muted-foreground">{"//"}</span> Impact: {project.impact}
               </span>
             </div>
           </div>
 
-          <div className="opacity-0 animate-fade-in-up stagger-2">
+          <div className="stagger-2 animate-fade-in-up opacity-0">
             <CodeDivider label="Challenges" />
           </div>
-          <div className="mb-12 opacity-0 animate-fade-in-up stagger-3">
+          <div className="stagger-3 mb-12 animate-fade-in-up opacity-0">
             <ul className="space-y-3">
               {project.challenges.map((c, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="font-mono text-primary mt-1">→</span>
+                  <span className="mt-1 font-mono text-primary">→</span>
                   <span className="text-muted-foreground">{c}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="opacity-0 animate-fade-in-up stagger-3">
+          <div className="stagger-3 animate-fade-in-up opacity-0">
             <CodeDivider label="Features" />
           </div>
-          <div className="mb-12 opacity-0 animate-fade-in-up stagger-4">
+          <div className="stagger-4 mb-12 animate-fade-in-up opacity-0">
             <ul className="space-y-3">
               {project.features.map((f, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="font-mono text-primary mt-1">✓</span>
+                  <span className="mt-1 font-mono text-primary">✓</span>
                   <span className="text-muted-foreground">{f}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="flex flex-wrap gap-4 pt-8 border-t border-border opacity-0 animate-fade-in-up stagger-4">
+          <div className="stagger-4 flex animate-fade-in-up flex-wrap gap-4 border-t border-border pt-8 opacity-0">
             {project.repo && (
               <Button asChild variant="outline" className="font-mono">
                 <a href={project.repo} target="_blank" rel="noreferrer">

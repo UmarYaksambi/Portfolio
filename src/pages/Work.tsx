@@ -67,17 +67,17 @@ export default function Work() {
     <Layout>
       <section className="py-20">
         <div className="container">
-          <div className="max-w-2xl mb-12 opacity-0 animate-fade-in-up">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="mb-12 max-w-2xl animate-fade-in-up opacity-0">
+            <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
               <DecryptedText text="Work" animateOn="view" sequential speed={60} />
             </h1>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="leading-relaxed text-muted-foreground">
               A selection of projects across AI systems, machine learning research, embedded
               networks, and full-stack platforms. Each one ships against real constraints.
             </p>
           </div>
 
-          <div className="opacity-0 animate-fade-in-up stagger-1">
+          <div className="stagger-1 animate-fade-in-up opacity-0">
             <CodeDivider label="Projects" />
           </div>
 
@@ -85,7 +85,7 @@ export default function Work() {
             {projects.map((project, index) => (
               <div
                 key={project.slug}
-                className="opacity-0 animate-fade-in-up"
+                className="animate-fade-in-up opacity-0"
                 style={{ animationDelay: `${Math.min(index, 6) * 0.08}s` }}
               >
                 <ProjectCard {...project} className="hover-lift h-full" />
@@ -93,13 +93,11 @@ export default function Work() {
             ))}
           </div>
 
-          <div className="mt-16 p-6 rounded-lg border border-border bg-card/60 text-center opacity-0 animate-fade-in-up stagger-4">
-            <p className="font-mono text-sm text-primary mb-2">
-              {"//"} More projects coming soon
-            </p>
+          <div className="stagger-4 mt-16 animate-fade-in-up rounded-lg border border-border bg-card/60 p-6 text-center opacity-0">
+            <p className="mb-2 font-mono text-sm text-primary">{"//"} More projects coming soon</p>
             <p className="text-sm text-muted-foreground">
-              Currently building at HPE on defect intelligence pipelines and exploring
-              federated fine-tuning.
+              Currently building at HPE on defect intelligence pipelines and exploring federated
+              fine-tuning.
             </p>
           </div>
         </div>
