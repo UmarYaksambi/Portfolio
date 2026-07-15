@@ -154,8 +154,8 @@
   /* Technical grid pattern background */
   .bg-grid {
     background-image:
-      linear-gradient(hsl(0 0% 18% / 0.5) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(0 0% 18% / 0.5) 1px, transparent 1px);
+      linear-gradient(hsl(var(--border) / 0.6) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.6) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 
