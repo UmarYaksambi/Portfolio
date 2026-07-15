@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Moon, Sun } from "lucide-react";
 import { flushSync } from "react-dom";
 import { cn } from "@/lib/utils";
 
@@ -10,9 +9,17 @@ interface ToggleThemeProps extends React.ComponentPropsWithoutRef<"button"> {
   animationType?: AnimationType;
 }
 
+/**
+ * A terminal-style theme toggle. Reads like a monospace boolean flag:
+ *
+ *   theme := [ dark | light ]
+ *
+ * The active token glows in the primary color; the whole pill flips with a
+ * split-vertical View Transition so the page appears to reconstruct itself.
+ */
 export const ToggleTheme = ({
   className,
-  duration = 500,
+  duration = 550,
   animationType = "split-vertical",
   ...props
 }: ToggleThemeProps) => {
@@ -57,26 +64,23 @@ export const ToggleTheme = ({
 
     await transition.ready;
 
-
     if (animationType === "split-vertical") {
-      // Reveal: new theme fades in
       document.documentElement.animate(
         [{ opacity: 0 }, { opacity: 1 }],
         {
-          duration: duration * 0.75,
+          duration: duration * 0.8,
           easing: "ease-in",
           pseudoElement: "::view-transition-new(root)",
         },
       );
-      // Old theme splits apart down the middle (reconstruction effect)
       document.documentElement.animate(
         [
           { clipPath: "inset(0 0 0 0)", transform: "none" },
-          { clipPath: "inset(0 40% 0 40%)", transform: "scale(1.2)" },
+          { clipPath: "inset(0 40% 0 40%)", transform: "scale(1.15)" },
           { clipPath: "inset(0 50% 0 50%)", transform: "scale(1)" },
         ],
         {
-          duration: duration * 1.5,
+          duration: duration * 1.4,
           easing: "cubic-bezier(0.68, -0.55, 0.265, 1.55)",
           pseudoElement: "::view-transition-old(root)",
         },
@@ -111,15 +115,53 @@ export const ToggleTheme = ({
       <button
         ref={buttonRef}
         onClick={toggleTheme}
-        aria-label="Toggle theme"
-        title="Toggle theme"
+        aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+        title={`theme := ${isDark ? "dark" : "light"}`}
         className={cn(
-          "inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-secondary/60 text-muted-foreground transition-all hover:border-primary/60 hover:text-primary",
+          "group relative inline-flex select-none items-center gap-1.5 rounded-md",
+          "border border-border/70 bg-background/40 px-2.5 py-1 font-mono text-[11px] leading-none",
+          "text-muted-foreground transition-all duration-300",
+          "hover:border-primary/50 hover:bg-background/70 hover:text-foreground",
+          "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/60",
           className,
         )}
         {...props}
       >
-        {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+        <span className="text-primary/70">$</span>
+        <span className="text-muted-foreground/80">theme</span>
+        <span className="text-primary/60">:=</span>
+
+        {/* dark token */}
+        <span
+          className={cn(
+            "transition-all duration-300",
+            isDark
+              ? "text-primary [text-shadow:0_0_8px_hsl(var(--primary)/0.6)]"
+              : "text-muted-foreground/50",
+          )}
+        >
+          dark
+        </span>
+
+        <span className="text-muted-foreground/40">|</span>
+
+        {/* light token */}
+        <span
+          className={cn(
+            "transition-all duration-300",
+            !isDark
+              ? "text-primary [text-shadow:0_0_8px_hsl(var(--primary)/0.6)]"
+              : "text-muted-foreground/50",
+          )}
+        >
+          light
+        </span>
+
+        {/* blinking caret next to active */}
+        <span
+          aria-hidden
+          className="ml-0.5 inline-block h-3 w-[2px] animate-blink bg-primary/80"
+        />
       </button>
       <style
         dangerouslySetInnerHTML={{
