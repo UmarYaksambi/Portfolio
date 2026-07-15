@@ -41,21 +41,22 @@ export const ToggleTheme = ({
   }, []);
 
   const toggleTheme = useCallback(async () => {
-    // Fallback if View Transition API isn't available
-    // @ts-expect-error - startViewTransition may not exist
-    if (!document.startViewTransition || animationType === "none") {
+    const doc = document as Document & {
+      startViewTransition?: (cb: () => void) => { ready: Promise<void> };
+    };
+    if (!doc.startViewTransition || animationType === "none") {
       applyTheme();
       return;
     }
 
-    // @ts-expect-error - startViewTransition
-    const transition = document.startViewTransition(() => {
+    const transition = doc.startViewTransition(() => {
       flushSync(() => {
         applyTheme();
       });
     });
 
     await transition.ready;
+
 
     if (animationType === "split-vertical") {
       // Reveal: new theme fades in
