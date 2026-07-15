@@ -128,9 +128,9 @@ export default function About() {
 
             {/* Sidebar */}
             <div className="space-y-8">
-              <div className="-mt-6 animate-fade-in-up opacity-0">
+              {/* <div className="-mt-6 animate-fade-in-up opacity-0">
                 <AsciiPortrait data={portraitAscii} fontSize="8px" className="w-full" />
-              </div>
+              </div> */}
 
               {[
                 { title: "Languages", items: skills.languages },
