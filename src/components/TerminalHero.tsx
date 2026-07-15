@@ -850,7 +850,7 @@ export function TerminalHero() {
 
   return (
     <div
-      className={`overflow-hidden rounded-lg border border-border bg-card/90 font-mono text-sm shadow-2xl backdrop-blur-sm ${
+      className={`dark overflow-hidden rounded-lg border border-border bg-card/95 font-mono text-sm text-foreground shadow-2xl backdrop-blur-sm ${
         egg ? "th-egg" : ""
       }`}
     >
