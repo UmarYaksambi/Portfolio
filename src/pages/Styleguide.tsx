@@ -4,6 +4,7 @@ import { CodeLabel } from "@/components/ui/CodeLabel";
 import { TechTag } from "@/components/ui/TechTag";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ToggleTheme } from "@/components/ToggleTheme";
 
 export default function Styleguide() {
   return (
@@ -11,13 +12,20 @@ export default function Styleguide() {
       <section className="py-20">
         <div className="container">
           {/* Page Header */}
-          <div className="mb-12 max-w-2xl">
-            <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Styleguide</h1>
-            <p className="leading-relaxed text-muted-foreground">
-              Design system documentation. A reference for colors, typography, and reusable
-              components that make up this portfolio.
-            </p>
+          <div className="mb-12 flex max-w-3xl items-start justify-between gap-8">
+            <div>
+              <h1 className="mb-4 text-3xl font-bold text-foreground md:text-4xl">Styleguide</h1>
+              <p className="leading-relaxed text-muted-foreground">
+                Design system documentation. A reference for colors, typography, and reusable
+                components that make up this portfolio.
+              </p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <ToggleTheme animationType="split-vertical" duration={500} />
+              <span className="font-mono text-[10px] text-muted-foreground">// theme</span>
+            </div>
           </div>
+
 
           {/* Colors */}
           <CodeDivider label="Colors" />
