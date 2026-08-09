@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://umaryaksambi.vercel.app/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Work -->
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work</loc>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Projects -->
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work/thrive-learning-platform</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work/adaptive-ecc-watermarking</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work/medquery</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work/adaptive-defenses-wireless-iot</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work/federated-healthcare-chatbot</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work/disaster-communication-framework</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/work/invisibility-cloak</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- About / Experience -->
+    <url>
+        <loc>https://umaryaksambi.vercel.app/about</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/experience</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact -->
+    <url>
+        <loc>https://umaryaksambi.vercel.app/contact</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Other public pages -->
+    <url>
+        <loc>https://umaryaksambi.vercel.app/now</loc>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://umaryaksambi.vercel.app/decisions</loc>
+        <priority>0.6</priority>
+    </url>
+
+</urlset>
