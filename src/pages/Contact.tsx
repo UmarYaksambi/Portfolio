@@ -32,7 +32,7 @@ const socialLinks = [
     href: "https://umaryaksambi.vercel.app",
     icon: Globe,
     label: "Portfolio",
-    handle: "umaryaksambi.vercel.app",
+    handle: "umaryaksambi.dev",
   },
 ];
 
