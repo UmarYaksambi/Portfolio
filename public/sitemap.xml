@@ -3,77 +3,77 @@
 
     <!-- Homepage -->
     <url>
-        <loc>https://umaryaksambi.vercel.app/</loc>
+        <loc>https://umaryaksambi.dev/</loc>
         <priority>1.0</priority>
     </url>
 
     <!-- Work -->
     <url>
-        <loc>https://umaryaksambi.vercel.app/work</loc>
+        <loc>https://umaryaksambi.dev/work</loc>
         <priority>0.9</priority>
     </url>
 
     <!-- Projects -->
     <url>
-        <loc>https://umaryaksambi.vercel.app/work/thrive-learning-platform</loc>
+        <loc>https://umaryaksambi.dev/work/thrive-learning-platform</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/work/adaptive-ecc-watermarking</loc>
+        <loc>https://umaryaksambi.dev/work/adaptive-ecc-watermarking</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/work/medquery</loc>
+        <loc>https://umaryaksambi.dev/work/medquery</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/work/adaptive-defenses-wireless-iot</loc>
+        <loc>https://umaryaksambi.dev/work/adaptive-defenses-wireless-iot</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/work/federated-healthcare-chatbot</loc>
+        <loc>https://umaryaksambi.dev/work/federated-healthcare-chatbot</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/work/disaster-communication-framework</loc>
+        <loc>https://umaryaksambi.dev/work/disaster-communication-framework</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/work/invisibility-cloak</loc>
+        <loc>https://umaryaksambi.dev/work/invisibility-cloak</loc>
         <priority>0.8</priority>
     </url>
 
     <!-- About / Experience -->
     <url>
-        <loc>https://umaryaksambi.vercel.app/about</loc>
+        <loc>https://umaryaksambi.dev/about</loc>
         <priority>0.8</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/experience</loc>
+        <loc>https://umaryaksambi.dev/experience</loc>
         <priority>0.8</priority>
     </url>
 
     <!-- Contact -->
     <url>
-        <loc>https://umaryaksambi.vercel.app/contact</loc>
+        <loc>https://umaryaksambi.dev/contact</loc>
         <priority>0.7</priority>
     </url>
 
     <!-- Other public pages -->
     <url>
-        <loc>https://umaryaksambi.vercel.app/now</loc>
+        <loc>https://umaryaksambi.dev/now</loc>
         <priority>0.6</priority>
     </url>
 
     <url>
-        <loc>https://umaryaksambi.vercel.app/decisions</loc>
+        <loc>https://umaryaksambi.dev/decisions</loc>
         <priority>0.6</priority>
     </url>
 
