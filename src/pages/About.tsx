@@ -27,7 +27,7 @@ const education = [
     icon: BookOpen,
     title: "BE Computer Science & Engineering (Data Sciences)",
     org: "RV College of Engineering, Bengaluru",
-    detail: "CGPA: 9.12 · Sep 2023 – Jul 2027",
+    detail: "CGPA: 9.13 · Sep 2023 – Jul 2027",
   },
   {
     icon: Award,
@@ -162,7 +162,7 @@ export default function About() {
                 </p>
                 <div className="mt-3 grid grid-cols-2 gap-4 text-center">
                   <div>
-                    <div className="font-mono text-2xl font-bold text-primary">9.12</div>
+                    <div className="font-mono text-2xl font-bold text-primary">9.13</div>
                     <div className="text-xs text-muted-foreground">CGPA</div>
                   </div>
                   <div>

@@ -16,7 +16,7 @@ const PROFILE = {
   role: "ML Engineer + Backend + Full-Stack",
   college: "RV College of Engineering, Bengaluru",
   degree: "BE, Computer Science & Engineering (Data Sciences)",
-  cgpa: "9.12 / 10",
+  cgpa: "9.13 / 10",
   grad: "Expected May 2027",
   status: "Ready to innovate & collaborate.",
 };

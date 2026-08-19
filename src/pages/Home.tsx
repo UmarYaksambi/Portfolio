@@ -127,7 +127,7 @@ export default function Home() {
 
               <div className="mt-6 grid grid-cols-3 gap-3">
                 <div className="rounded-lg border border-border bg-card/60 p-4 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/50">
-                  <div className="font-mono text-2xl font-bold text-primary">9.12</div>
+                  <div className="font-mono text-2xl font-bold text-primary">9.13</div>
                   <div className="mt-1 font-mono text-xs text-muted-foreground">CGPA</div>
                 </div>
                 <div className="rounded-lg border border-border bg-card/60 p-4 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-primary/50">
@@ -327,7 +327,7 @@ export default function Home() {
             </div>
             <div className="stagger-2 grid animate-fade-in-up grid-cols-2 gap-3 opacity-0">
               {[
-                { k: "9.12", v: "CGPA" },
+                { k: "9.13", v: "CGPA" },
                 { k: "300+", v: "Coding Club" },
                 { k: "15+", v: "Events led" },
                 { k: "1000+", v: "Reached" },
