@@ -16,6 +16,7 @@ import Uptime from "./pages/Uptime";
 import Now from "./pages/Now";
 import Decisions from "./pages/Decisions";
 import NotFound from "./pages/NotFound";
+import { Analytics } from "@vercel/analytics/react";
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const App = () => (
           </Routes>
         </ClickSpark>
       </BrowserRouter>
+      <Analytics />
     </TooltipProvider>
   </QueryClientProvider>
 );
